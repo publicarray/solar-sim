@@ -1,4 +1,12 @@
 import CelestialObject from './CelestialObject'
+import loadTextureAsync from './utils'
+import {
+  RingGeometry,
+  Mesh,
+  MeshPhongMaterial,
+  MeshBasicMaterial,
+  DoubleSide
+} from 'three'
 
 export default class Planet extends CelestialObject {
   constructor (
@@ -9,35 +17,25 @@ export default class Planet extends CelestialObject {
     options = {}
   ) {
     super(diameter, distance, period, rotation, options)
-    // super();
-    // if (ring) {
-    //     this.ring = new THREE.Mesh(new THREE.RingGeometry( radius, radius + 10, 32 ), new THREE.MeshBasicMaterial( { color: 0xffff00, side: THREE.DoubleSide } ););
-    // }
-
-    // addTo (star) {
-    // if (typeof === 'Star')
-    //   star.add(this.orbit)
-    //   return this
-    // }
   }
 
-  // static setMap (url, mapType = 'map') {
-  //     loader.load(
-  //         // resource URL
-  //         url,
-  //         // Function when resource is loaded
-  //         (texture) => {
-  //             this.material[mapType] = texture;
-  //             this.mesh.material = this.material;
-  //         },
-  //         // Function called when download progresses
-  //         (xhr) => {
-  //             console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
-  //         },
-  //         // Function called when download errors
-  //         (xhr) => {
-  //             console.log( 'An error happened' );
-  //         }
-  //     );
-  // }
+  addRing (url) {
+    loadTextureAsync(url) // get texture
+      .then(texture => {
+        this.ring = new Mesh( // create mesh and apply geometry and material
+          new RingGeometry(this.radius + 1, this.radius + 7, 32), // create geometry
+          new MeshBasicMaterial({
+            map: texture,
+            transparent: true,
+            side: DoubleSide
+          }) // apply texture to new material
+        )
+        this.ring.rotation.x = Math.PI / -2 // rotate 90 degrees
+        this.mesh.add(this.ring) // add ring to self (planet)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    return this
+  }
 }

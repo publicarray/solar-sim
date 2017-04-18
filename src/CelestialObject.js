@@ -1,23 +1,11 @@
+import loadTextureAsync from './utils'
 import {
-  TextureLoader,
   Object3D,
   Mesh,
   MeshPhongMaterial,
   MeshBasicMaterial,
   SphereGeometry
 } from 'three'
-
-const loader = new TextureLoader()
-
-function loadTextureAsync (url) {
-  return new Promise((resolve, reject) => {
-    const callback = texture => resolve(texture)
-    const loading = xhr =>
-      console.log(xhr.loaded / xhr.total * 100 + '% loaded')
-    const error = xhr => reject(xhr)
-    loader.load(url, callback, loading, error)
-  })
-}
 
 let count = 1 // FixMe
 
@@ -34,10 +22,11 @@ export default class CelestialObject {
     this.period = period
     this.rotation = rotation
     // let radius = this.diameter * solarSystem.scale * 0.5;
+    this.radius = 10
     this.orbit = new Object3D()
     this.material = new MeshPhongMaterial({shininess: 0})
     this.mesh = new Mesh(
-      new SphereGeometry(10, 30, 30),
+      new SphereGeometry(this.radius, 30, 30),
       new MeshBasicMaterial(0x000000)
     )
     // this.mesh = new Mesh(new SphereGeometry(this.diameter * solarSystem.scale, 32, 32), new MeshPhongMaterial(0x000000));
@@ -46,8 +35,6 @@ export default class CelestialObject {
     // this.mesh.position.set(solarSystem.scale * this.distance * solarSystem.au * this.distance, 0, 0);
     this.orbit.add(this.mesh)
   }
-
-  // static loader = new TextureLoader();
 
   setMap (url, mapType = 'map') {
     loadTextureAsync(url)

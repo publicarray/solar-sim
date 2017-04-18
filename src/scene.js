@@ -136,11 +136,13 @@ function addObjects () {
   // Saturn
   saturn = new Planet(120536, 9.582, 10747, 10.7)
     .setMap('textures/saturn.jpg')
+    .addRing('textures/saturn-rings.png')
     .addTo(scene)
 
   // Uranus
   uranus = new Planet(51118, 19.201, 30589, -17.2)
     .setMap('textures/uranus.jpg')
+    .addRing('textures/uranus-rings.png')
     .addTo(scene)
 
   // Neptune
