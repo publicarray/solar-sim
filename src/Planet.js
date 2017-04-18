@@ -30,7 +30,7 @@ export default class Planet extends CelestialObject {
             side: DoubleSide
           }) // apply texture to new material
         )
-        this.ring.rotation.x = Math.PI / -2 // rotate 90 degrees
+        this.ring.rotation.x = Math.PI / -2 // rotate 90 degrees // Fixme
         this.mesh.add(this.ring) // add ring to self (planet)
       })
       .catch(err => {

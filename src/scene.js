@@ -1,5 +1,21 @@
-import * as THREE from 'three'
-import OrbitControls from './libs/OrbitControls'
+import {
+  TextureLoader, // deprecated
+  SphereGeometry, //  deprecated
+  SphereBufferGeometry, // deprecated
+  IcosahedronGeometry,
+  Mesh, // deprecated
+  MeshBasicMaterial, // deprecated
+  Scene,
+  WebGLRenderer,
+  Clock,
+  Fog,
+  PerspectiveCamera,
+  Vector3,
+  PointLight,
+  AmbientLight
+} from 'three'
+// import OrbitControls from './libs/OrbitControls'
+import FlyControls from './libs/FlyControls'
 import Stats from 'stats.js'
 import dat from '../node_modules/dat.gui/build/dat.gui'
 
@@ -9,33 +25,45 @@ import Satellite from './Satellite'
 
 let scene, camera, renderer, controls, stats, light
 let earth, jupiter, mars, mercury, moon, neptune, saturn, sun, uranus, venus
-const loader = new THREE.TextureLoader()
+const loader = new TextureLoader()
+let clock = new Clock()
 
 function init () {
+  // DOM container
+  let container = document.createElement('div')
+  container.style.overflow = 'hidden'
+  document.body.appendChild(container)
+
   // SCENE
-  scene = new THREE.Scene()
+  scene = new Scene()
 
   // RENDERER
-  renderer = new THREE.WebGLRenderer({
+  renderer = new WebGLRenderer({
     antialias: true,
     logarithmicDepthBuffer: true
   })
   renderer.setPixelRatio(window.devicePixelRatio)
   renderer.setSize(window.innerWidth, window.innerHeight)
   renderer.setClearColor(0x000000, 1)
-  document.body.appendChild(renderer.domElement)
+  container.appendChild(renderer.domElement)
 
   // CAMERA
   const VIEW_ANGLE = 45
   const ASPECT = window.innerWidth / window.innerHeight
   const NEAR = 1e-6
   const FAR = 1e27
-  camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR)
+  camera = new PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR)
   camera.position.set(0, 0, 500)
-  camera.lookAt(new THREE.Vector3(0, 0, 0))
+  camera.lookAt(new Vector3(0, 0, 0))
 
   // CONTROLS
-  controls = new OrbitControls(camera, renderer.domElement)
+  controls = new FlyControls(camera, container)
+  controls.movementSpeed = 100
+  controls.rollSpeed = Math.PI / 6
+  controls.dragToLook = true
+
+  // renderer.gammaInput = true;
+  // renderer.gammaOutput = true;
   // enable animation loop when using damping or autorotation
   // controls.enableDamping = true;
   // controls.dampingFactor = 0.25;
@@ -47,7 +75,7 @@ function init () {
   // ADD LICHTS
   addLights()
 
-  // SKYBOX/FOG
+  // SKYBOX
   // var skyBoxGeometry = new THREE.CubeGeometry( 10000, 10000, 10000 );
   // var skyBoxMaterial = new THREE.MeshBasicMaterial( { color: 0x9999ff, side: THREE.BackSide } );
   // var skyBox = new THREE.Mesh( skyBoxGeometry, skyBoxMaterial );
@@ -73,20 +101,26 @@ function init () {
   // var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
   // scene.add( skyBox );
   getTexture('textures/sky.png', function (texture) {
-    let skybox = new THREE.Mesh(
-      new THREE.SphereBufferGeometry(1e20, 32, 32),
-      new THREE.MeshBasicMaterial({map: texture})
+    let skybox = new Mesh(
+      new IcosahedronGeometry(1e20, 5),
+      // new SphereBufferGeometry(1e20, 32, 32),
+      new MeshBasicMaterial({map: texture})
     )
     skybox.scale.x = -1
     scene.add(skybox)
   })
 
+  // FOG
+  // scene.fog = new Fog(0x000000, 3500, 15000)
+  // scene.fog.color.setHSL(0.51, 0.4, 0.01)
+
   // STATS
   stats = new Stats()
-  document.getElementById('container').appendChild(stats.dom)
+  container.appendChild(stats.dom)
 
   // GUI/options
   let gui = new dat.GUI()
+  // container.appendChild(gui.domElement)
   // addGui(); // Todo: implement function
 }
 
@@ -166,7 +200,7 @@ function addLights () {
   // scene.add( lights[ 2 ] );
 
   // Sun
-  light = new THREE.PointLight(0xffffff, 1)
+  light = new PointLight(0xffffff, 1)
   light.position.set(0, 0, 0)
   sun.mesh.add(light)
 
@@ -175,7 +209,7 @@ function addLights () {
   // scene.add( light );
   // light = new THREE.AmbientLight( 0x555555 );
   // light = new THREE.AmbientLight( 0xeeeeee );
-  scene.add(new THREE.AmbientLight(0x555555))
+  scene.add(new AmbientLight(0x555555))
 
   // addLight( 0.55, 0.9, 0.5, 5000, 0, -1000 );
   // addLight( 0.08, 0.8, 0.5,    0, 0, -1000 );
@@ -193,6 +227,9 @@ function addLights () {
 function animate () {
   /* global requestAnimationFrame */
   requestAnimationFrame(animate)
+
+  var delta = clock.getDelta()
+  controls.update(delta)
 
   // controls.update(); // required if controls.enableDamping = true, or if controls.autoRotate = true
   sun.animate()
