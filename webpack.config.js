@@ -1,20 +1,29 @@
-var webpack = require('webpack');
 var path = require('path');
+
+const INDIR = 'src';
+const OUTDIR = 'dist';
+
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
+    template: path.resolve(__dirname, INDIR, 'index.html'),
+    filename: 'index.html',
+    inject: 'body'
+});
+
+const webpack = require('webpack');
+const HotModuleReplacementPlugin = new webpack.HotModuleReplacementPlugin();
 
 module.exports = {
     target: 'web',
-    entry: './src/index.js',
+    context: path.resolve(__dirname, INDIR),
+    entry: './index.js',
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, OUTDIR),
         filename: 'bundle.js',
-        publicPath: 'dist/'
+        publicPath: OUTDIR
     },
     module: {
         rules: [
-        {
-            test: /\.html$/,
-            use: "raw-loader"
-        },
         {
             test: /\.js$/,
             exclude: /(node_modules|bower_components)/,
@@ -29,7 +38,7 @@ module.exports = {
         hot: true, // hot module replacement. Depends on HotModuleReplacementPlugin
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        HTMLWebpackPluginConfig, HotModuleReplacementPlugin
     ]
 }
 

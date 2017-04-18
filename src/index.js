@@ -7,7 +7,7 @@
 // import CelestialObject from './CelestialObject';
 
 import Detector from './Detector'; // modified version
-import { init, animate } from './scene';
+import { init, animate, camera, renderer } from './scene';
 import './fullscreen';
 
 if (Detector.webgl) {

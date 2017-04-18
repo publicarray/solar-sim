@@ -172,7 +172,7 @@ class Planet extends CelestialObject {
 
 class Satelite extends CelestialObject {}
 
-export function init() {
+function init() {
     // SCENE
     scene = new THREE.Scene();
 
@@ -354,7 +354,7 @@ function addLights () {
     // }
 }
 
-export function animate() {
+function animate() {
 
     requestAnimationFrame( animate );
 
@@ -399,3 +399,6 @@ function getTexture(url, callback) {
         }
     );
 }
+
+export { init, animate, camera, renderer };
+

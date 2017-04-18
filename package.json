@@ -11,11 +11,12 @@
     "babel-loader": "^6.4.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.4.0",
+    "html-webpack-plugin": "^2.28.0",
     "webpack": "^2.4.1",
     "webpack-dev-server": "^2.4.2"
   },
   "scripts": {
-    "start": "webpack-dev-server --open",
+    "start": "webpack-dev-server --content-base dist --watch-content-base",
     "build": "webpack -p --progress --colors",
     "watch": "webpack -d --progress --watch"
   }
