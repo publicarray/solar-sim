@@ -16,7 +16,10 @@ function init () {
   scene = new THREE.Scene()
 
   // RENDERER
-  renderer = new THREE.WebGLRenderer({ antialias: true, logarithmicDepthBuffer: true })
+  renderer = new THREE.WebGLRenderer({
+    antialias: true,
+    logarithmicDepthBuffer: true
+  })
   renderer.setPixelRatio(window.devicePixelRatio)
   renderer.setSize(window.innerWidth, window.innerHeight)
   renderer.setClearColor(0x000000, 1)
@@ -33,10 +36,10 @@ function init () {
 
   // CONTROLS
   controls = new OrbitControls(camera, renderer.domElement)
-    // enable animation loop when using damping or autorotation
-    // controls.enableDamping = true;
-    // controls.dampingFactor = 0.25;
-    // controls.enableZoom = false;
+  // enable animation loop when using damping or autorotation
+  // controls.enableDamping = true;
+  // controls.dampingFactor = 0.25;
+  // controls.enableZoom = false;
 
   // MASH OBJECTS
   addObjects()
@@ -70,7 +73,10 @@ function init () {
   // var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
   // scene.add( skyBox );
   getTexture('textures/sky.png', function (texture) {
-    let skybox = new THREE.Mesh(new THREE.SphereBufferGeometry(1e20, 32, 32), new THREE.MeshBasicMaterial({ map: texture }))
+    let skybox = new THREE.Mesh(
+      new THREE.SphereBufferGeometry(1e20, 32, 32),
+      new THREE.MeshBasicMaterial({map: texture})
+    )
     skybox.scale.x = -1
     scene.add(skybox)
   })
@@ -81,26 +87,30 @@ function init () {
 
   // GUI/options
   let gui = new dat.GUI()
-    // addGui();
+  // addGui();
 }
 
 function addObjects () {
-  var defaultMaterial = new THREE.MeshPhongMaterial({ color: 0x000000, shading: THREE.SmoothShading, shininess: 0 })
+  var defaultMaterial = new THREE.MeshPhongMaterial({
+    color: 0x000000,
+    shading: THREE.SmoothShading,
+    shininess: 0
+  })
 
   // SUN
   sun = new Planet(scene, 1400000, 0, 0, 609.12)
   sun.setMap('textures/sun.png')
-    // sun.setMap('textures/sun-lightMap', 'lightMap');
+  // sun.setMap('textures/sun-lightMap', 'lightMap');
 
   // Mercury
   mercury = new Planet(scene, 12104, 0.723, 224.7, -5832.5)
-    // getTexture('textures/mercury.jpg', mercury.setMapCallback);
+  // getTexture('textures/mercury.jpg', mercury.setMapCallback);
   mercury.setMap('textures/mercury.jpg')
   mercury.setMap('textures/mercury-normal.png', 'normalMap')
 
   // Venus
   venus = new Planet(scene, 4879, 0.387, 88, 1407.6)
-    // getTexture('textures/mercury.jpg', venus.setMapCallback);
+  // getTexture('textures/mercury.jpg', venus.setMapCallback);
   venus.setMap('textures/venus.jpg', 'map')
   venus.setMap('textures/venus-normal.png', 'normalMap')
 
@@ -108,7 +118,7 @@ function addObjects () {
   earth = new Planet(scene, 12756, 1, 365.2, 23.9)
   earth.setMap('textures/earth.jpg')
   earth.setMap('textures/earth-normal.png', 'normalMap')
-    // earth.setMap('textures/earth-specular.jpg', 'specularMap');
+  // earth.setMap('textures/earth-specular.jpg', 'specularMap');
 
   //     moon: {
   //         id: 0,
@@ -119,7 +129,7 @@ function addObjects () {
 
   // Moon
   // moonOrbit = new THREE.Object3D()
-  var moonMaterial = new THREE.MeshPhongMaterial({ shininess: 0 })
+  var moonMaterial = new THREE.MeshPhongMaterial({shininess: 0})
   moon = new THREE.Mesh(new THREE.SphereGeometry(10, 30, 30), defaultMaterial)
   moon.position.set(25, 0, 0)
   earth.mesh.add(moon)
@@ -231,7 +241,7 @@ function getTexture (url, callback) {
     },
     // Function called when download progresses
     function (xhr) {
-      console.log((xhr.loaded / xhr.total * 100) + '% loaded')
+      console.log(xhr.loaded / xhr.total * 100 + '% loaded')
     },
     // Function called when download errors
     function (xhr) {
@@ -240,4 +250,4 @@ function getTexture (url, callback) {
   )
 }
 
-export { init, animate, camera, renderer }
+export {init, animate, camera, renderer}

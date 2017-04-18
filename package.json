@@ -1,18 +1,22 @@
 {
   "name": "SolarSim",
   "dependencies": {
-    "babel-runtime": "^6.23.0",
     "dat.gui": "^0.6.1",
     "stats.js": "^0.17.0",
     "three": "^0.84.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
+    "babel-runtime": "^6.23.0",
     "babel-loader": "^6.4.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.4.0",
+    "eslint": "^3.19.0",
     "html-webpack-plugin": "^2.28.0",
-    "standard": "^10.0.2",
+    "husky": "^0.13.3",
+    "lint-staged": "^3.4.0",
+    "prettier": "^1.1.0",
+    "prettier-standard": "^3.0.1",
     "webpack": "^2.4.1",
     "webpack-bundle-analyzer": "^2.4.0",
     "webpack-dev-server": "^2.4.2"
@@ -21,8 +25,14 @@
     "start": "webpack-dev-server --content-base dist --watch-content-base",
     "start-production": "webpack-dev-server -p --content-base dist --watch-content-base",
     "build": "webpack -p --progress",
-    "watch": "webpack --progress --watch",
     "stats": "webpack --profile --json > stats.json; webpack-bundle-analyzer stats.json",
-    "test": "standard --fix"
+    "format": "prettier-standard 'src/**/*.js'",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "prettier-standard",
+      "git add"
+    ]
   }
 }

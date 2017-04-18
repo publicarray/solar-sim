@@ -1,14 +1,22 @@
 // full-screen
-document.body.addEventListener('keydown', function (e) {
-  if (e.key.toLowerCase() === 'f') {
-    toggleFullScreen()
-  }
-}, false)
+document.body.addEventListener(
+  'keydown',
+  function (e) {
+    if (e.key.toLowerCase() === 'f') {
+      toggleFullScreen()
+    }
+  },
+  false
+)
 
 function toggleFullScreen () {
   var element = document.querySelector('body>canvas')
-  if (!document.fullscreenElement && !document.mozFullScreenElement &&
-        !document.webkitFullscreenElement && !document.msFullscreenElement) {
+  if (
+    !document.fullscreenElement &&
+    !document.mozFullScreenElement &&
+    !document.webkitFullscreenElement &&
+    !document.msFullscreenElement
+  ) {
     if (element.requestFullscreen) {
       element.requestFullscreen()
     } else if (element.msRequestFullscreen) {

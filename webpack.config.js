@@ -35,7 +35,5 @@ module.exports = {
     compress: true, // enable gzip compression
     hot: true // hot module replacement. Depends on HotModuleReplacementPlugin
   },
-  plugins: [
-    HTMLWebpackPluginConfig, HotModuleReplacementPlugin
-  ]
+  plugins: [HTMLWebpackPluginConfig, HotModuleReplacementPlugin]
 }
