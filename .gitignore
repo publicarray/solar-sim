@@ -3,3 +3,4 @@ dist/bundle.js
 dist/index.html
 originals
 root.bundle
+stats.json

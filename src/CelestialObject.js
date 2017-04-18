@@ -41,3 +41,5 @@ export default class CelestialObject {
         }).catch((err) => {console.log(err)});
     }
 }
+
+export const sayBye = name => `Bye ${name}!`

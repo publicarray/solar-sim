@@ -1,4 +1,4 @@
 {
-    "presets": ["env"],
-    "plugins": ["transform-runtime"]
+    "presets": [ [ "env", { "modules": false } ] ],
+    // "plugins": ["transform-runtime"] // 584 vs 607 kb
 }
