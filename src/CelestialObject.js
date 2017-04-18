@@ -23,7 +23,6 @@ let count = 1 // FixMe
 
 export default class CelestialObject {
   constructor (
-    scene,
     diameter = 0,
     distance = 0,
     period = 0,
@@ -45,7 +44,6 @@ export default class CelestialObject {
     this.mesh.position.set(50 * count, 0, 0) // FixMe
     count++ // FixMe
     // this.mesh.position.set(solarSystem.scale * this.distance * solarSystem.au * this.distance, 0, 0);
-    scene.add(this.orbit)
     this.orbit.add(this.mesh)
   }
 
@@ -60,5 +58,15 @@ export default class CelestialObject {
       .catch(err => {
         console.log(err)
       })
+    return this
+  }
+
+  addTo (scene) {
+    scene.add(this.orbit)
+    return this
+  }
+
+  animate () {
+    this.mesh.rotation.y += 0.01 // fixme
   }
 }

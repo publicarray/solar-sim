@@ -2,17 +2,22 @@ import CelestialObject from './CelestialObject'
 
 export default class Planet extends CelestialObject {
   constructor (
-    scene,
     diameter = 0,
     distance = 0,
     period = 0,
     rotation = 0,
     options = {}
   ) {
-    super(scene, diameter, distance, period, rotation, options)
+    super(diameter, distance, period, rotation, options)
     // super();
     // if (ring) {
     //     this.ring = new THREE.Mesh(new THREE.RingGeometry( radius, radius + 10, 32 ), new THREE.MeshBasicMaterial( { color: 0xffff00, side: THREE.DoubleSide } ););
+    // }
+
+    // addTo (star) {
+    // if (typeof === 'Star')
+    //   star.add(this.orbit)
+    //   return this
     // }
   }
 

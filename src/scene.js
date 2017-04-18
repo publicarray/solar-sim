@@ -3,9 +3,9 @@ import OrbitControls from './libs/OrbitControls'
 import Stats from 'stats.js'
 import dat from '../node_modules/dat.gui/build/dat.gui'
 
-// import Star from './Star'
+import Star from './Star'
 import Planet from './Planet'
-// import Satellite from './Satellite'
+import Satellite from './Satellite'
 
 let scene, camera, renderer, controls, stats, light
 let earth, jupiter, mars, mercury, moon, neptune, saturn, sun, uranus, venus
@@ -87,82 +87,66 @@ function init () {
 
   // GUI/options
   let gui = new dat.GUI()
-  // addGui();
+  // addGui(); // Todo: implement function
 }
 
 function addObjects () {
-  var defaultMaterial = new THREE.MeshPhongMaterial({
-    color: 0x000000,
-    shading: THREE.SmoothShading,
-    shininess: 0
-  })
-
   // SUN
-  sun = new Planet(scene, 1400000, 0, 0, 609.12)
-  sun.setMap('textures/sun.png')
-  // sun.setMap('textures/sun-lightMap', 'lightMap');
+  sun = new Star(1400000, 0, 0, 609.12)
+    .setMap('textures/sun.png')
+    // .setMap('textures/sun-lightMap', 'lightMap')
+    .addTo(scene)
 
   // Mercury
-  mercury = new Planet(scene, 12104, 0.723, 224.7, -5832.5)
-  // getTexture('textures/mercury.jpg', mercury.setMapCallback);
-  mercury.setMap('textures/mercury.jpg')
-  mercury.setMap('textures/mercury-normal.png', 'normalMap')
+  mercury = new Planet(12104, 0.723, 224.7, -5832.5)
+    .setMap('textures/mercury.jpg')
+    .setMap('textures/mercury-normal.png', 'normalMap')
+    .addTo(scene)
 
   // Venus
-  venus = new Planet(scene, 4879, 0.387, 88, 1407.6)
-  // getTexture('textures/mercury.jpg', venus.setMapCallback);
-  venus.setMap('textures/venus.jpg', 'map')
-  venus.setMap('textures/venus-normal.png', 'normalMap')
+  venus = new Planet(4879, 0.387, 88, 1407.6)
+    .setMap('textures/venus.jpg', 'map')
+    .setMap('textures/venus-normal.png', 'normalMap')
+    .addTo(scene)
 
   // Earth
-  earth = new Planet(scene, 12756, 1, 365.2, 23.9)
-  earth.setMap('textures/earth.jpg')
-  earth.setMap('textures/earth-normal.png', 'normalMap')
-  // earth.setMap('textures/earth-specular.jpg', 'specularMap');
-
-  //     moon: {
-  //         id: 0,
-  //         diamiter: 3475, // km 1km = 1000m
-  //         distance: 0.002567, // AU
-  //         period: 27.3, // 1 year = x days
-  //         rotation: 655.7, //(hours)
+  earth = new Planet(12756, 1, 365.2, 23.9)
+    .setMap('textures/earth.jpg')
+    .setMap('textures/earth-normal.png', 'normalMap')
+    .setMap('textures/earth-specular.jpg', 'specularMap')
+    .addTo(scene)
 
   // Moon
-  // moonOrbit = new THREE.Object3D()
-  var moonMaterial = new THREE.MeshPhongMaterial({shininess: 0})
-  moon = new THREE.Mesh(new THREE.SphereGeometry(10, 30, 30), defaultMaterial)
-  moon.position.set(25, 0, 0)
-  earth.mesh.add(moon)
-
-  getTexture('textures/moon.jpg', function (texture) {
-    moonMaterial.map = texture
-    moon.material = moonMaterial
-  })
-  getTexture('textures/moon-normal.png', function (texture) {
-    moonMaterial.normalMap = texture
-    moon.material = moonMaterial
-  })
+  moon = new Satellite(3475, 0.002567, 27.3, 655.7)
+    .setMap('textures/moon.jpg')
+    .setMap('textures/moon-normal.png', 'normalMap')
+    .addTo(earth)
 
   // Mars
-  mars = new Planet(scene, 6792, 1.524, 687, 24.6)
-  mars.setMap('textures/mars.jpg')
-  mars.setMap('textures/mars-normal.png', 'normalMap')
+  mars = new Planet(6792, 1.524, 687, 24.6)
+    .setMap('textures/mars.jpg')
+    .setMap('textures/mars-normal.png', 'normalMap')
+    .addTo(scene)
 
   // Jupiter
-  jupiter = new Planet(scene, 142984, 5.204, 4331, 9.9)
-  jupiter.setMap('textures/jupiter.jpg')
+  jupiter = new Planet(142984, 5.204, 4331, 9.9)
+    .setMap('textures/jupiter.jpg')
+    .addTo(scene)
 
   // Saturn
-  saturn = new Planet(scene, 120536, 9.582, 10747, 10.7)
-  saturn.setMap('textures/saturn.jpg')
+  saturn = new Planet(120536, 9.582, 10747, 10.7)
+    .setMap('textures/saturn.jpg')
+    .addTo(scene)
 
   // Uranus
-  uranus = new Planet(scene, 51118, 19.201, 30589, -17.2)
-  uranus.setMap('textures/uranus.jpg')
+  uranus = new Planet(51118, 19.201, 30589, -17.2)
+    .setMap('textures/uranus.jpg')
+    .addTo(scene)
 
   // Neptune
-  neptune = new Planet(scene, 49528, 30.047, 59800, 16.1)
-  neptune.setMap('textures/neptune.jpg')
+  neptune = new Planet(49528, 30.047, 59800, 16.1)
+    .setMap('textures/neptune.jpg')
+    .addTo(scene)
 }
 
 function addLights () {
@@ -209,21 +193,9 @@ function animate () {
   requestAnimationFrame(animate)
 
   // controls.update(); // required if controls.enableDamping = true, or if controls.autoRotate = true
-  sun.mesh.rotation.x += 0.001
-  sun.mesh.rotation.y += 0.002
-  moon.rotation.y += 0.01
-  earth.mesh.rotation.y += 0.01
-
-  // mercury.orbit.rotation.y += 0.001;
-  // venus.orbit.rotation.y += 0.002;
-  // earth.orbit.rotation.y += 0.003;
-  // moonOrbit.rotation.y += 0.004;
-  // mars.orbit.rotation.y += 0.005;
-  // jupiter.orbit.rotation.y += 0.006;
-  // saturn.orbit.rotation.y += 0.007;
-  // saturn.orbit.rotation.y += 0.008;
-  // uranus.orbit.rotation.y += 0.009;
-  // neptune.orbit.rotation.y += 0.01;
+  sun.animate()
+  moon.animate()
+  earth.animate()
 
   // earth.translateZ(1);
 
@@ -231,6 +203,7 @@ function animate () {
   renderer.render(scene, camera)
 }
 
+// Todo: deprecated, only used for sky-box
 function getTexture (url, callback) {
   loader.load(
     // resource URL
