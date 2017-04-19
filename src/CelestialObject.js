@@ -41,10 +41,11 @@ export default class CelestialObject {
     this.orbit.add(this.mesh)
   }
 
-  setMap (url, mapType = 'map') {
+  setMap (url, mapType = 'map', options = {}) {
     loadTextureAsync(url)
       .then(texture => {
         this.material[mapType] = texture
+        Object.assign(this.material, options)
         this.mesh.material = this.material
       })
       .catch(err => {
@@ -58,7 +59,7 @@ export default class CelestialObject {
     return this
   }
 
-  animate () {
-    this.mesh.rotation.y += 0.01 // fixme
+  animate (delta) {
+    this.mesh.rotation.y += 0.5 * delta // fixme
   }
 }

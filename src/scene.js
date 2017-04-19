@@ -12,7 +12,8 @@ import {
   PerspectiveCamera,
   Vector3,
   PointLight,
-  AmbientLight
+  AmbientLight,
+  Color
 } from 'three'
 // import OrbitControls from './libs/OrbitControls'
 import FlyControls from './libs/FlyControls'
@@ -100,7 +101,10 @@ function init () {
   // var skyMaterial = new THREE.MeshFaceMaterial( materialArray );
   // var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
   // scene.add( skyBox );
-  getTexture('textures/sky.png', function (texture) {
+
+  // getTexture('textures/sky2048x1024.png', function (texture) {
+  // getTexture('textures/sky4096x2048.png', function (texture) {
+  getTexture('textures/sky8192x4096.png', function (texture) {
     let skybox = new Mesh(
       new IcosahedronGeometry(1e20, 5),
       // new SphereBufferGeometry(1e20, 32, 32),
@@ -146,8 +150,11 @@ function addObjects () {
   // Earth
   earth = new Planet(12756, 1, 365.2, 23.9)
     .setMap('textures/earth.jpg')
-    .setMap('textures/earth-normal.png', 'normalMap')
-    .setMap('textures/earth-specular.jpg', 'specularMap')
+    .setMap('textures/earth-normal.png', 'normalMap', {bumpScale: 0.05})
+    .setMap('textures/earth-specular.jpg', 'specularMap', {
+      specular: new Color('grey')
+    })
+    .addClouds('textures/earth-storm-clouds.jpg')
     .addTo(scene)
 
   // Moon
@@ -232,9 +239,9 @@ function animate () {
   controls.update(delta)
 
   // controls.update(); // required if controls.enableDamping = true, or if controls.autoRotate = true
-  sun.animate()
-  moon.animate()
-  earth.animate()
+  sun.animate(delta)
+  moon.animate(delta)
+  earth.animate(delta)
 
   // earth.translateZ(1);
 
