@@ -13,7 +13,8 @@ export default class Satellite extends CelestialObject {
 
   addTo (object) {
     this.mesh.position.set(25, 0, 0) // FixMe
-    object.mesh.add(this.orbit)
+    this.orbit.position.set(object.mesh.position.x, 0, 0) // FixMe
+    object.orbit.add(this.orbit)
     return this
   }
 }

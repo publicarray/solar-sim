@@ -9,7 +9,7 @@ import {
   IcosahedronGeometry
 } from 'three'
 
-let count = 1 // FixMe
+let count = 0 // FixMe
 
 export default class CelestialObject {
   constructor (
@@ -60,6 +60,7 @@ export default class CelestialObject {
   }
 
   animate (delta) {
-    this.mesh.rotation.y += 0.5 * delta // fixme
+    this.mesh.rotation.y += 0.03 * delta // fixme
+    // this.orbit.rotation.y += 0.01 * delta // fixme
   }
 }

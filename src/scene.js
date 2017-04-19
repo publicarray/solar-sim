@@ -240,8 +240,15 @@ function animate () {
 
   // controls.update(); // required if controls.enableDamping = true, or if controls.autoRotate = true
   sun.animate(delta)
-  moon.animate(delta)
+  mercury.animate(delta)
+  venus.animate(delta)
   earth.animate(delta)
+  moon.animate(delta)
+  mars.animate(delta)
+  jupiter.animate(delta)
+  saturn.animate(delta)
+  uranus.animate(delta)
+  neptune.animate(delta)
 
   // earth.translateZ(1);
 
