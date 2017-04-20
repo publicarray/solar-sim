@@ -4,9 +4,9 @@ import {
   Mesh,
   MeshPhongMaterial,
   MeshBasicMaterial,
-  // SphereGeometry,
-  // OctahedronGeometry,
-  IcosahedronGeometry
+  // IcosahedronGeometry,
+  // SphereBufferGeometry,
+  SphereGeometry
 } from 'three'
 
 let count = 0 // FixMe
@@ -29,9 +29,8 @@ export default class CelestialObject {
     // this.material = new MeshPhongMaterial({shininess: 0, wireframe: true})
     this.material = new MeshPhongMaterial({shininess: 0})
     this.mesh = new Mesh(
-      // new SphereGeometry(this.radius, 30, 24, 12),
-      // new OctahedronGeometry(this.radius, 3),
-      new IcosahedronGeometry(this.radius, 3),
+      new SphereGeometry(this.radius + 0.3, 24, 24), // create geometry
+      // new IcosahedronGeometry(this.radius, 3),
       new MeshBasicMaterial(0x000000)
     )
     // this.mesh = new Mesh(new SphereGeometry(this.diameter * solarSystem.scale, 32, 32), new MeshPhongMaterial(0x000000));
