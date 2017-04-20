@@ -1,8 +1,7 @@
 import {
-  TextureLoader, // deprecated
   SphereBufferGeometry,
-  Mesh, // deprecated
-  MeshBasicMaterial, // deprecated
+  Mesh,
+  MeshBasicMaterial,
   Scene,
   WebGLRenderer,
   Clock,
@@ -59,7 +58,6 @@ function init () {
   controls.movementSpeed = 100
   controls.rollSpeed = Math.PI / 6
   controls.dragToLook = true
-
   // renderer.gammaInput = true;
   // renderer.gammaOutput = true;
   // enable animation loop when using damping or autorotation
@@ -70,34 +68,10 @@ function init () {
   // MASH OBJECTS
   addObjects()
 
-  // ADD LICHTS
-  addLights()
+  // ADD LIGHTS
+  scene.add(new AmbientLight(0x555555))
 
   // SKYBOX
-  // var skyBoxGeometry = new THREE.CubeGeometry( 10000, 10000, 10000 );
-  // var skyBoxMaterial = new THREE.MeshBasicMaterial( { color: 0x9999ff, side: THREE.BackSide } );
-  // var skyBox = new THREE.Mesh( skyBoxGeometry, skyBoxMaterial );
-  // scene.add(skyBox);
-  // scene.fog = new THREE.FogExp2( 0x9999ff, 0.00025 );
-
-  // axes
-  // var axes = new THREE.AxisHelper(100);
-  // scene.add( axes );
-
-  // var imagePrefix = "images/dawnmountain-";
-  // var directions  = ["xpos", "xneg", "ypos", "yneg", "zpos", "zneg"];
-  // var imageSuffix = ".png";
-  // var skyGeometry = new THREE.CubeGeometry( 5000, 5000, 5000 );
-
-  // var materialArray = [];
-  // for (var i = 0; i < 6; i++)
-  //     materialArray.push( new THREE.MeshBasicMaterial({
-  //         map: THREE.ImageUtils.loadTexture( imagePrefix + directions[i] + imageSuffix ),
-  //         side: THREE.BackSide
-  //     }));
-  // var skyMaterial = new THREE.MeshFaceMaterial( materialArray );
-  // var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
-  // scene.add( skyBox );
 
   // loadTextureAsync('textures/low/sky2048x1024.png', function (texture) {
   // loadTextureAsync('textures/mid/sky4096x2048.png', function (texture) {
@@ -116,18 +90,6 @@ function init () {
     .catch(err => {
       console.log(err)
     })
-
-  // getTexture('textures/sky4096x2048.png', function (texture) {
-  // // getTexture('textures/sky8192x4096.png', function (texture) {
-  //   let skybox = new Mesh(
-  //     // new IcosahedronGeometry(1e10, 5),
-  //     new SphereBufferGeometry(1e10, 12, 12),
-  //     new MeshBasicMaterial({map: texture})
-  //     // new MeshBasicMaterial({wireframe: true})
-  //   )
-  //   skybox.scale.x = -1
-  //   scene.add(skybox)
-  // })
 
   // FOG
   // scene.fog = new Fog(0x000000, 3500, 15000)
@@ -205,40 +167,6 @@ function addObjects () {
   neptune = new Planet(49528, 30.047, 59800, 16.1)
     .setMap('textures/mid/neptune.jpg')
     .addTo(scene)
-}
-
-function addLights () {
-  // var lights = [];
-  // lights[ 0 ] = new THREE.PointLight( 0xffffff, 1, 0 );
-  // lights[ 1 ] = new THREE.PointLight( 0xffffff, 1, 0 );
-  // lights[ 2 ] = new THREE.PointLight( 0xffffff, 1, 0 );
-
-  // lights[ 0 ].position.set( 0, 200, 0 );
-  // lights[ 1 ].position.set( 100, 200, 100 );
-  // lights[ 2 ].position.set( - 100, - 200, - 100 );
-
-  // scene.add( lights[ 0 ] );
-  // scene.add( lights[ 1 ] );
-  // scene.add( lights[ 2 ] );
-
-  // light = new THREE.DirectionalLight( 0x999999 );
-  // light.position.set( -1, -1, -1 );
-  // scene.add( light );
-  // light = new THREE.AmbientLight( 0x555555 );
-  // light = new THREE.AmbientLight( 0xeeeeee );
-  scene.add(new AmbientLight(0x555555))
-
-  // addLight( 0.55, 0.9, 0.5, 5000, 0, -1000 );
-  // addLight( 0.08, 0.8, 0.5,    0, 0, -1000 );
-  // addLight( 0.995, 0.5, 0.9, 5000, 5000, -1000 );
-  // function addLight( h, s, l, x, y, z ) {
-  //     var light = new THREE.PointLight( 0xffffff, 1.5, 2000 );
-  //     light.color.setHSL( h, s, l );
-  //     light.position.set( x, y, z );
-  //     scene.add( light );
-  //     // var flareColor = new THREE.Color( 0xffffff );
-  //     // flareColor.setHSL( h, s, l + 0.5 );
-  // }
 }
 
 function animate () {
