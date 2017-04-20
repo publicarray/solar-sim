@@ -1,4 +1,5 @@
 import CelestialObject from './CelestialObject'
+import {PointLight} from 'three'
 
 export default class Star extends CelestialObject {
   constructor (
@@ -9,6 +10,8 @@ export default class Star extends CelestialObject {
     options = {}
   ) {
     super(diameter, distance, period, rotation, options)
-    // super();
+
+    this.light = new PointLight(0xffffff, 1)
+    this.mesh.add(this.light)
   }
 }

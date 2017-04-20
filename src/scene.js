@@ -221,11 +221,6 @@ function addLights () {
   // scene.add( lights[ 1 ] );
   // scene.add( lights[ 2 ] );
 
-  // Sun
-  light = new PointLight(0xffffff, 1)
-  light.position.set(0, 0, 0)
-  sun.mesh.add(light)
-
   // light = new THREE.DirectionalLight( 0x999999 );
   // light.position.set( -1, -1, -1 );
   // scene.add( light );
@@ -270,3 +265,5 @@ function animate () {
   stats.update()
   renderer.render(scene, camera)
 }
+
+export {init, animate, camera, renderer}
