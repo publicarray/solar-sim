@@ -19,7 +19,7 @@ module.exports = {
   entry: './index.js',
   output: {
     path: path.resolve(__dirname, OUTDIR),
-    filename: 'bundle.js',
+    filename: 'bundle-common.js',
     publicPath: OUTDIR
   },
   module: {

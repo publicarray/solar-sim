@@ -1,6 +1,7 @@
 node_modules
-dist/bundle.js
+dist/*.js
 dist/index.html
 originals
 root.bundle
 stats.json
+config.codekit3

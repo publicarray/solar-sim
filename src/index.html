@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset=utf-8>
-    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <title>SolarSim</title>
-    <style>
-        body { margin: 0; }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <title>SolarSim</title>
+  <style>
+    html {
+      background: black;
+    }
+    body {
+      min-height: 100vh;
+      position: relative;
+      margin: 0;
+    }
+  </style>
 </head>
-<body></body>
+<body>
+  <script type="module" src="bundle-es6.js"></script>
+  <script defer nomodule src="bundle-common.js"></script>
+</body>
 </html>
