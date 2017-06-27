@@ -1,25 +1,25 @@
-const path = require('path')
+const path = require("path");
 
-const INDIR = 'src'
-const OUTDIR = 'dist'
+const INDIR = "src";
+const OUTDIR = "dist";
 
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: path.resolve(__dirname, INDIR, 'index.html'),
-  filename: 'index.html',
-  inject: 'body'
-})
+  template: path.resolve(__dirname, INDIR, "index.html"),
+  filename: "index.html",
+  inject: "body"
+});
 
-const webpack = require('webpack')
-const HotModuleReplacementPlugin = new webpack.HotModuleReplacementPlugin()
+const webpack = require("webpack");
+const HotModuleReplacementPlugin = new webpack.HotModuleReplacementPlugin();
 
 module.exports = {
-  target: 'web',
+  target: "web",
   context: path.resolve(__dirname, INDIR),
-  entry: './index.js',
+  entry: "./index.js",
   output: {
     path: path.resolve(__dirname, OUTDIR),
-    filename: 'bundle-common.js',
+    filename: "bundle-common.js",
     publicPath: OUTDIR
   },
   module: {
@@ -27,7 +27,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader'
+        loader: "babel-loader"
       }
     ]
   },
@@ -36,4 +36,4 @@ module.exports = {
     hot: true // hot module replacement. Depends on HotModuleReplacementPlugin
   },
   plugins: [HTMLWebpackPluginConfig, HotModuleReplacementPlugin]
-}
+};
