@@ -26,8 +26,12 @@ import Satellite from './Satellite.js'
 let scene, camera, renderer, controls, stats, light
 let earth, jupiter, mars, mercury, moon, neptune, saturn, sun, uranus, venus
 let clock = new Clock()
+let quality
 
 function init () {
+  quality = 'high' // 2048 × 1024 pixels
+  quality - 'mid' // 1024 × 512 pixels
+
   // DOM container
   let container = document.createElement('div')
   container.style.overflow = 'hidden'
@@ -79,7 +83,7 @@ function init () {
   // loadTextureAsync('textures/low/sky2048x1024.png', function (texture) {
   // loadTextureAsync('textures/mid/sky4096x2048.png', function (texture) {
   // loadTextureAsync('textures/high/sky8192x4096.png', function (texture) {
-  loadTextureAsync('textures/high/stars-milkyway.jpg')
+  loadTextureAsync(`textures/${quality}/stars.jpg`)
     .then(texture => {
       let skybox = new Mesh(
         // new IcosahedronGeometry(1e10, 5),
@@ -111,64 +115,70 @@ function init () {
 function addObjects () {
   // SUN
   sun = new Star(1400000, 0, 0, 609.12)
-    .setMap('textures/low/sun.png')
-    // .setMap('textures/sun-lightMap', 'lightMap')
+    .setMap(`textures/${quality}/sun.jpg`)
+    // .setMap(`textures/${quality}/sun-lightMap`, 'lightMap')
     .addTo(scene)
 
   // Mercury
   mercury = new Planet(12104, 0.723, 224.7, -5832.5)
-    .setMap('textures/mid/mercury.jpg')
-    .setMap('textures/mid/mercury-normal.png', 'normalMap')
+    .setMap(`textures/${quality}/mercury.jpg`)
+    .setMap(`textures/${quality}/mercury-normal.png`, 'normalMap')
     .addTo(scene)
 
   // Venus
   venus = new Planet(4879, 0.387, 88, 1407.6)
-    .setMap('textures/mid/venus.jpg', 'map')
-    .setMap('textures/mid/venus-normal.png', 'normalMap')
+    .setMap(`textures/${quality}/venus.jpg`, 'map')
+    .setMap(`textures/${quality}/venus-normal.png`, 'normalMap')
     .addTo(scene)
 
   // Earth
   earth = new Planet(12756, 1, 365.2, 23.9)
-    .setMap('textures/mid/earth.jpg')
-    .setMap('textures/mid/earth-normal.png', 'normalMap', { bumpScale: 0.05 })
-    .setMap('textures/mid/earth-specular.jpg', 'specularMap', {
+    .setMap(`textures/${quality}/earth.jpg`)
+    .setMap(`textures/${quality}/earth-ambient-occlusion.png`, 'aoMap')
+    .setMap(`textures/${quality}/earth-displacement.png`, 'displacementMap', {
+      displacementScale: 1
+    })
+    .setMap(`textures/${quality}/earth-normal.png`, 'normalMap', {
+      bumpScale: 1
+    })
+    .setMap(`textures/${quality}/earth-specular.jpg`, 'specularMap', {
       specular: new Color('grey')
     })
-    .addClouds('textures/mid/earth-clouds.jpg')
+    .addClouds(`textures/${quality}/earth-clouds.jpg`)
     .addTo(scene)
 
   // Moon
   moon = new Satellite(3475, 0.002567, 27.3, 655.7)
-    .setMap('textures/mid/moon.jpg')
-    .setMap('textures/mid/moon-normal.png', 'normalMap')
+    .setMap(`textures/${quality}/moon.jpg`)
+    .setMap(`textures/${quality}/moon-normal.png`, 'normalMap')
     .addTo(earth)
 
   // Mars
   mars = new Planet(6792, 1.524, 687, 24.6)
-    .setMap('textures/mid/mars.jpg')
-    .setMap('textures/mid/mars-normal.png', 'normalMap')
+    .setMap(`textures/${quality}/mars.jpg`)
+    .setMap(`textures/${quality}/mars-normal.png`, 'normalMap')
     .addTo(scene)
 
   // Jupiter
   jupiter = new Planet(142984, 5.204, 4331, 9.9)
-    .setMap('textures/mid/jupiter.jpg')
+    .setMap(`textures/${quality}/jupiter.jpg`)
     .addTo(scene)
 
   // Saturn
   saturn = new Planet(120536, 9.582, 10747, 10.7)
-    .setMap('textures/mid/saturn.jpg')
-    .addRing('textures/mid/saturn-rings.png')
+    .setMap(`textures/${quality}/saturn.jpg`)
+    .addRing(`textures/${quality}/saturn-rings.png`)
     .addTo(scene)
 
   // Uranus
   uranus = new Planet(51118, 19.201, 30589, -17.2)
-    .setMap('textures/mid/uranus.jpg')
-    .addRing('textures/mid/uranus-rings.png')
+    .setMap(`textures/${quality}/uranus.jpg`)
+    .addRing(`textures/${quality}/uranus-rings.png`)
     .addTo(scene)
 
   // Neptune
   neptune = new Planet(49528, 30.047, 59800, 16.1)
-    .setMap('textures/mid/neptune.jpg')
+    .setMap(`textures/${quality}/neptune.jpg`)
     .addTo(scene)
 }
 

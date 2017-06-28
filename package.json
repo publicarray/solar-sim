@@ -29,9 +29,8 @@
   "scripts": {
     "start": "webpack-dev-server --content-base dist --watch-content-base",
     "start-production": "webpack-dev-server -p --content-base dist --watch-content-base",
-    "build": "webpack -p --progress",
+    "build": "rollup -c rollup.config.prod.js && webpack -p --progress",
     "dev": "rollup -c -w",
-    "rollup": "rollup -c rollup.config.prod.js -w",
     "stats": "webpack --profile --json > stats.json; webpack-bundle-analyzer stats.json",
     "format": "prettier-standard 'src/**/*.js'",
     "precommit": "lint-staged"
