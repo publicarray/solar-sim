@@ -24,16 +24,14 @@ export default class CelestialObject {
     this.distance = distance
     this.period = period
     this.rotation = rotation
-    // let radius = this.diameter * solarSystem.scale * 0.5;
+    // const radius = this.diameter * solarSystem.scale * 0.5;
     this.radius = 10
     this.orbit = new Object3D()
     // this.material = new MeshPhongMaterial({shininess: 0, wireframe: true})
-    this.material = new MeshPhongMaterial({ shininess: 0 })
-    this.mesh = new Mesh(
-      new SphereGeometry(this.radius + 0.3, 24, 24), // create geometry
-      // new IcosahedronGeometry(this.radius, 3),
-      new MeshBasicMaterial(0x000000)
-    )
+    this.material = new MeshPhongMaterial({ shininess: 10 }) // default shininess = 30
+    this.geo = new SphereGeometry(this.radius, 24, 24) // create geometry
+    // this.geo = new IcosahedronGeometry(this.radius, 3),
+    this.mesh = new Mesh(this.geo, new MeshBasicMaterial(0x000000))
     // this.mesh = new Mesh(new SphereGeometry(this.diameter * solarSystem.scale, 32, 32), new MeshPhongMaterial(0x000000));
     this.mesh.position.set(50 * count, 0, 0) // FixMe
     count++ // FixMe

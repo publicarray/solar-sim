@@ -63,8 +63,8 @@ export default class Star extends CelestialObject {
     this.root.add(this.light)
 
     this.corona = new SunCorona()
-    this.corona.scale = 3
-    this.corona.sunSize = 10
+    this.corona.scale = 1
+    this.corona.sunSize = this.radius
     this.root.add(this.corona.root)
   }
 
