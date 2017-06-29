@@ -3,13 +3,6 @@ const path = require("path");
 const INDIR = "src";
 const OUTDIR = "dist";
 
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: path.resolve(__dirname, INDIR, "index.html"),
-  filename: "index.html",
-  inject: "body"
-});
-
 const webpack = require("webpack");
 const HotModuleReplacementPlugin = new webpack.HotModuleReplacementPlugin();
 
@@ -19,8 +12,7 @@ module.exports = {
   entry: "./index.js",
   output: {
     path: path.resolve(__dirname, OUTDIR),
-    filename: "bundle-common.js",
-    publicPath: OUTDIR
+    filename: "bundle-common.js"
   },
   module: {
     rules: [
@@ -35,5 +27,5 @@ module.exports = {
     compress: true, // enable gzip compression
     hot: true // hot module replacement. Depends on HotModuleReplacementPlugin
   },
-  plugins: [HTMLWebpackPluginConfig, HotModuleReplacementPlugin]
+  plugins: [HotModuleReplacementPlugin]
 };

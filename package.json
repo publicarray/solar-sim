@@ -12,7 +12,6 @@
     "babel-preset-env": "^1.5.2",
     "babel-runtime": "^6.23.0",
     "eslint": "^4.1.1",
-    "html-webpack-plugin": "^2.29.0",
     "husky": "^0.14.1",
     "lint-staged": "^4.0.0",
     "prettier": "^1.4.4",
@@ -27,8 +26,8 @@
     "webpack-dev-server": "^2.5.0"
   },
   "scripts": {
-    "start": "webpack-dev-server --content-base dist --watch-content-base",
-    "start-production": "webpack-dev-server -p --content-base dist --watch-content-base",
+    "start": "webpack-dev-server --watch-content-base",
+    "start-production": "webpack-dev-server -p --watch-content-base",
     "build": "rollup -c rollup.config.prod.js && webpack -p --progress",
     "dev": "rollup -c -w",
     "stats": "webpack --profile --json > stats.json; webpack-bundle-analyzer stats.json",
