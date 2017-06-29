@@ -4,7 +4,7 @@ import resolve from 'rollup-plugin-node-resolve';
 export default {
   entry: 'src/index.js',
   format: 'es',
-  dest: 'dist/bundle-es6.js',
+  dest: 'dist/bundle-es.js',
   plugins: [
     resolve({
       jsnext: true,

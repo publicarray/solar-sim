@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Loading...</title>
+  <style type="text/css">
+    body {
+      margin: 0;
+      width: 100%;
+      position: absolute;
+      top: 45%;
+    }
+  </style>
+</head>
+<body>
+  <div id="progressbar"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/1.0.1/progressbar.min.js" integrity="sha256-VupM2GVVXK2c3Smq5LxXjUHBZveWTs35hu1al6ss6kk=" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+  // Docs: http://progressbarjs.readthedocs.org/en/1.0.0/
+  var bar = new ProgressBar.Line(progressbar, {
+    //strokeWidth: 4,
+    //easing: 'easeInOut',
+    duration: 1400,
+    color: '#000',
+    trailColor: '#eee',
+    trailWidth: 0,
+    svgStyle: {width: '100%', height: '100%'},
+    text: {
+      style: {
+        //color: '#000',
+        position: 'absolute',
+        right: '50%',
+        top: '30px',
+      },
+      //autoStyleContainer: false
+    },
+    from: {color: '#000'},
+    to: {color: '#000'},
+    step: (state, bar) => {
+      bar.setText(Math.round(bar.value() * 100) + ' %');
+      // bar.path.setAttribute('stroke', state.color);
+    }
+  });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/86/three.min.js" integrity="sha256-gec3OIQVcpO401S96RlOij8H3wSB9vw7LzyaogKCT9Q=" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    var manager = new THREE.LoadingManager();
+
+    manager.onStart = function ( url, itemsLoaded, itemsTotal ) {
+      console.log( 'Started loading file: ' + url + '.\nLoaded ' + itemsLoaded + ' of ' + itemsTotal + ' files.' );
+    };
+
+    manager.onLoad = function ( ) {
+      console.log( 'Loading Complete!');
+      // call scene constructor
+    };
+
+    manager.onProgress = function ( url, loaded, total ) {
+      bar.animate(loaded/total);
+      console.log( 'Loading file: ' + url + '.\nLoaded ' + loaded + ' of ' + total + ' files.' );
+    };
+
+    manager.onError = function ( url ) {
+      console.log( 'There was an error loading ' + url );
+    };
+
+    var loader = new THREE.ImageLoader(manager);
+
+    var texture = loader.load('https://placehold.it/400x400', function ( texture ) {
+      // texture.mapping = // THREE.UVMapping(default)/THREE.CubeReflectionMapping/THREE.CubeRefractionMapping/THREE.SphericalReflectionMapping
+      texture.wrapS = texture.wrapT = THREE.RepeatWrapping; // THREE.ClampToEdgeWrapping(default)/THREE.RepeatWrapping/THREE.MirroredRepeatWrapping.
+      // texture.anisotropy = 16 // renderer.getMaxAnisotropy()
+      // texture.flipY = true
+      texture.name = 'myTextureName'
+      // texture.offset = 0.1
+    });
+  </script>
+</body>
+</html>
