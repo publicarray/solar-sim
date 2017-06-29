@@ -19,6 +19,7 @@ export default class CelestialObject {
     rotation = 0,
     options = {}
   ) {
+    this.root = new Object3D()
     this.diameter = diameter
     this.distance = distance
     this.period = period
@@ -38,6 +39,7 @@ export default class CelestialObject {
     count++ // FixMe
     // this.mesh.position.set(solarSystem.scale * this.distance * solarSystem.au * this.distance, 0, 0);
     this.orbit.add(this.mesh)
+    this.root.add(this.orbit)
   }
 
   setMap (url, mapType = 'map', options = {}) {
@@ -54,7 +56,7 @@ export default class CelestialObject {
   }
 
   addTo (scene) {
-    scene.add(this.orbit)
+    scene.add(this.root)
     return this
   }
 

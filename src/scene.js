@@ -10,6 +10,7 @@ import {
   Vector3,
   PointLight,
   AmbientLight,
+  ShaderMaterial,
   Color
 } from 'three'
 // } from '../node_modules/three/build/three.module.js'
@@ -29,8 +30,9 @@ let clock = new Clock()
 let quality
 
 function init () {
-  quality = 'high' // 2048 × 1024 pixels
-  quality - 'mid' // 1024 × 512 pixels
+  quality = 'high' // 2048 x 1024 pixels
+  // quality = 'mid' // 1024 x 512 pixels
+  // quality = 'low' // 512 x 256 pixels
 
   // DOM container
   let container = document.createElement('div')
@@ -80,15 +82,19 @@ function init () {
 
   // SKYBOX
 
-  // loadTextureAsync('textures/low/sky2048x1024.png', function (texture) {
-  // loadTextureAsync('textures/mid/sky4096x2048.png', function (texture) {
-  // loadTextureAsync('textures/high/sky8192x4096.png', function (texture) {
+  // loadTextureAsync(`textures/${quality}/sky.png`, function (texture) {
   loadTextureAsync(`textures/${quality}/stars.jpg`)
     .then(texture => {
       let skybox = new Mesh(
         // new IcosahedronGeometry(1e10, 5),
+        // new SphereBufferGeometry(1e10, 60, 40),
         new SphereBufferGeometry(1e10, 12, 12),
-        new MeshBasicMaterial({ map: texture })
+        // new MeshBasicMaterial({ map: texture })
+        new ShaderMaterial({
+          uniforms: { texture: { type: 't', value: texture } },
+          vertexShader: document.getElementById('sky-vertex').textContent,
+          fragmentShader: document.getElementById('sky-fragment').textContent
+        })
         // new MeshBasicMaterial({wireframe: true})
       )
       skybox.scale.x = -1
@@ -141,7 +147,7 @@ function addObjects () {
     .setMap(`textures/${quality}/earth-normal.png`, 'normalMap', {
       bumpScale: 1
     })
-    .setMap(`textures/${quality}/earth-specular.jpg`, 'specularMap', {
+    .setMap(`textures/${quality}/earth-specular.png`, 'specularMap', {
       specular: new Color('grey')
     })
     .addClouds(`textures/${quality}/earth-clouds.jpg`)
@@ -190,7 +196,7 @@ function animate () {
   controls.update(delta)
 
   // controls.update(); // required if controls.enableDamping = true, or if controls.autoRotate = true
-  sun.animate(delta)
+  sun.animate(delta, camera)
   mercury.animate(delta)
   venus.animate(delta)
   earth.animate(delta)
