@@ -66,6 +66,9 @@ export default class Star extends CelestialObject {
     this.corona.scale = 1
     this.corona.sunSize = this.radius
     this.root.add(this.corona.root)
+
+    this.orbit.remove(this.mesh)
+    this.root.remove(this.orbit)
   }
 
   animate (delta, camera) {
