@@ -1,14 +1,6 @@
 import CelestialObject from './CelestialObject'
 import loadTextureAsync from './utils'
-import {
-  SphereGeometry,
-  // IcosahedronGeometry, // smoother details, messes with texture
-  RingGeometry,
-  Mesh,
-  MeshPhongMaterial,
-  MeshBasicMaterial,
-  DoubleSide
-} from 'three'
+import * as THREE from 'three'
 
 export default class Planet extends CelestialObject {
   constructor (
@@ -24,13 +16,13 @@ export default class Planet extends CelestialObject {
   addRing (url) {
     loadTextureAsync(url) // get texture
       .then(texture => {
-        this.ring = new Mesh( // create mesh and apply geometry and material
-          new RingGeometry(this.radius + 1, this.radius + 7, 32), // create geometry
-          new MeshPhongMaterial({
+        this.ring = new THREE.Mesh( // create mesh and apply geometry and material
+          new THREE.RingGeometry(this.radius + 1, this.radius + 7, 32), // create geometry
+          new THREE.MeshPhongMaterial({
             map: texture,
             transparent: true,
-            side: DoubleSide
-          }) // apply texture to new material
+            side: THREE.DoubleSide
+          }) // apply texture to new THREE.material
         )
         this.ring.rotation.x = Math.PI / -2 // rotate 90 degrees // Fixme
         this.mesh.add(this.ring) // add ring to self (planet)
@@ -44,17 +36,17 @@ export default class Planet extends CelestialObject {
   addClouds (url) {
     loadTextureAsync(url) // get texture
       .then(texture => {
-        this.clouds = new Mesh( // create mesh and apply geometry and material
-          // new IcosahedronGeometry(this.radius + 0.5, 3),
-          new SphereGeometry(this.radius + 0.7, 24, 24), // create geometry
-          new MeshPhongMaterial({
+        this.clouds = new THREE.Mesh( // create mesh and apply geometry and material
+          // new THREE.IcosahedronGeometry(this.radius + 0.5, 3),
+          new THREE.SphereGeometry(this.radius + 0.7, 24, 24), // create geometry
+          new THREE.MeshPhongMaterial({
             map: texture,
             alphaMap: texture,
             // wireframe: true,
             transparent: true,
             depthWrite: false,
-            side: DoubleSide
-          }) // apply texture to new material
+            side: THREE.DoubleSide
+          }) // apply texture to new THREE.material
         )
         this.mesh.add(this.clouds) // add clouds to self (planet)
       })

@@ -1,6 +1,6 @@
-import Detector from './Detector.js' // modified version
-import { init, animate, camera, renderer } from './scene.js'
-import './fullscreen.js'
+import Detector from './Detector' // modified version
+import { init, animate, camera, renderer } from './scene'
+import './fullscreen'
 
 if (Detector.webgl) {
   init()

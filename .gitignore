@@ -1,6 +1,4 @@
 node_modules
-dist/*.js
-dist/index.html
 originals
 root.bundle
 stats.json

@@ -1,13 +1,5 @@
 import loadTextureAsync from './utils'
-import {
-  Object3D,
-  Mesh,
-  MeshPhongMaterial,
-  MeshBasicMaterial,
-  // IcosahedronGeometry,
-  // SphereBufferGeometry,
-  SphereGeometry
-} from 'three'
+import * as THREE from 'three'
 
 let count = 0 // FixMe
 
@@ -19,20 +11,20 @@ export default class CelestialObject {
     rotation = 0,
     options = {}
   ) {
-    this.root = new Object3D()
+    this.root = new THREE.Object3D()
     this.diameter = diameter
     this.distance = distance
     this.period = period
     this.rotation = rotation
     // const radius = this.diameter * solarSystem.scale * 0.5;
     this.radius = 10
-    this.orbit = new Object3D()
-    // this.material = new MeshPhongMaterial({shininess: 0, wireframe: true})
-    this.material = new MeshPhongMaterial({ shininess: 10 }) // default shininess = 30
-    this.geo = new SphereGeometry(this.radius, 24, 24) // create geometry
-    // this.geo = new IcosahedronGeometry(this.radius, 3),
-    this.mesh = new Mesh(this.geo, new MeshBasicMaterial(0x000000))
-    // this.mesh = new Mesh(new SphereGeometry(this.diameter * solarSystem.scale, 32, 32), new MeshPhongMaterial(0x000000));
+    this.orbit = new THREE.Object3D()
+    // this.material = new THREE.MeshPhongMaterial({shininess: 0, wireframe: true})
+    this.material = new THREE.MeshPhongMaterial({ shininess: 10 }) // default shininess = 30
+    this.geo = new THREE.SphereGeometry(this.radius, 24, 24) // create geometry
+    // this.geo = new THREE.IcosahedronGeometry(this.radius, 3),
+    this.mesh = new THREE.Mesh(this.geo, new THREE.MeshBasicMaterial(0x000000))
+    // this.mesh = new THREE.Mesh(new THREE.SphereGeometry(this.diameter * solarSystem.scale, 32, 32), new THREE.MeshPhongMaterial(0x000000));
     this.mesh.position.set(50 * count, 0, 0) // FixMe
     count++ // FixMe
     // this.mesh.position.set(solarSystem.scale * this.distance * solarSystem.au * this.distance, 0, 0);

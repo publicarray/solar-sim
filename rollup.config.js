@@ -1,4 +1,4 @@
-// rollup.config.js
+// For development (browsers with es6+ only)
 import resolve from 'rollup-plugin-node-resolve';
 
 export default {

@@ -1,32 +1,18 @@
-import {
-  SphereBufferGeometry,
-  Mesh,
-  MeshBasicMaterial,
-  Scene,
-  WebGLRenderer,
-  Clock,
-  Fog,
-  PerspectiveCamera,
-  Vector3,
-  PointLight,
-  AmbientLight,
-  ShaderMaterial,
-  Color
-} from 'three'
+import * as THREE from 'three'
 // } from '../node_modules/three/build/three.module.js'
 // import OrbitControls from './libs/OrbitControls'
-import FlyControls from './libs/FlyControls.js'
-import Stats from '../node_modules/stats.js/src/Stats.js'
+import FlyControls from './libs/FlyControls'
+import Stats from '../node_modules/stats.js/src/Stats'
 // import * as dat from 'dat.gui'
 // import dat from '../node_modules/dat.gui/index'
-import loadTextureAsync from './utils.js'
-import Star from './Star.js'
-import Planet from './Planet.js'
-import Satellite from './Satellite.js'
+import loadTextureAsync from './utils'
+import Star from './Star'
+import Planet from './Planet'
+import Satellite from './Satellite'
 
 let scene, camera, renderer, controls, stats, light
 let earth, jupiter, mars, mercury, moon, neptune, saturn, sun, uranus, venus
-let clock = new Clock()
+let clock = new THREE.Clock()
 let quality
 
 function init () {
@@ -40,10 +26,10 @@ function init () {
   document.body.appendChild(container)
 
   // SCENE
-  scene = new Scene()
+  scene = new THREE.Scene()
 
   // RENDERER
-  renderer = new WebGLRenderer({
+  renderer = new THREE.WebGLRenderer({
     antialias: true,
     logarithmicDepthBuffer: true
   })
@@ -58,9 +44,9 @@ function init () {
   const ASPECT = window.innerWidth / window.innerHeight
   const NEAR = 1e-6
   const FAR = 1e27
-  camera = new PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR)
+  camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR)
   camera.position.set(0, 0, 500)
-  camera.lookAt(new Vector3(0, 0, 0))
+  camera.lookAt(new THREE.Vector3(0, 0, 0))
 
   // CONTROLS
   controls = new FlyControls(camera, container)
@@ -78,24 +64,24 @@ function init () {
   addObjects()
 
   // ADD LIGHTS
-  scene.add(new AmbientLight(0x555555))
+  scene.add(new THREE.AmbientLight(0x555555))
 
   // SKYBOX
 
   // loadTextureAsync(`textures/${quality}/sky.png`, function (texture) {
   loadTextureAsync(`textures/${quality}/stars.jpg`)
     .then(texture => {
-      let skybox = new Mesh(
-        // new IcosahedronGeometry(1e10, 5),
-        // new SphereBufferGeometry(1e10, 60, 40),
-        new SphereBufferGeometry(1e10, 12, 12),
-        // new MeshBasicMaterial({ map: texture })
-        new ShaderMaterial({
+      let skybox = new THREE.Mesh(
+        // new THREE.IcosahedronGeometry(1e10, 5),
+        // new THREE.SphereBufferGeometry(1e10, 60, 40),
+        new THREE.SphereBufferGeometry(1e10, 12, 12),
+        // new THREE.MeshBasicMaterial({ map: texture })
+        new THREE.ShaderMaterial({
           uniforms: { texture: { type: 't', value: texture } },
           vertexShader: document.getElementById('sky-vertex').textContent,
           fragmentShader: document.getElementById('sky-fragment').textContent
         })
-        // new MeshBasicMaterial({wireframe: true})
+        // new THREE.MeshBasicMaterial({wireframe: true})
       )
       skybox.scale.x = -1
       scene.add(skybox)
@@ -105,7 +91,7 @@ function init () {
     })
 
   // FOG
-  // scene.fog = new Fog(0x000000, 3500, 15000)
+  // scene.fog = new THREE.Fog(0x000000, 3500, 15000)
   // scene.fog.color.setHSL(0.51, 0.4, 0.01)
 
   // STATS
@@ -148,7 +134,7 @@ function addObjects () {
       bumpScale: 1
     })
     .setMap(`textures/${quality}/earth-specular.png`, 'specularMap', {
-      specular: new Color('grey')
+      specular: new THREE.Color('grey')
     })
     .addClouds(`textures/${quality}/earth-clouds.jpg`)
     .addTo(scene)
