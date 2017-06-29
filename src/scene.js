@@ -130,7 +130,7 @@ function addObjects () {
     .setMap(`textures/${quality}/earth-displacement.png`, 'displacementMap', {
       displacementScale: 1
     })
-    .setMap(`textures/${quality}/earth-normal.png`, 'normalMap', {
+    .setMap(`textures/${quality}/earth-normal.jpg`, 'normalMap', {
       bumpScale: 1
     })
     .setMap(`textures/${quality}/earth-specular.png`, 'specularMap', {
