@@ -46,7 +46,7 @@ export default class Planet extends CelestialObject {
       .then(texture => {
         this.clouds = new Mesh( // create mesh and apply geometry and material
           // new IcosahedronGeometry(this.radius + 0.5, 3),
-          new SphereGeometry(this.radius + 0.5, 24, 24), // create geometry
+          new SphereGeometry(this.radius + 0.7, 24, 24), // create geometry
           new MeshPhongMaterial({
             map: texture,
             alphaMap: texture,
