@@ -112,19 +112,19 @@ function addObjects () {
     .addTo(scene)
 
   // Mercury
-  mercury = new Planet(12104, 0.723, 224.7, -5832.5)
+  mercury = new Planet(12104, 0.723, 224.7, -5832.5, 0.034, 7)
     .setMap(`textures/${quality}/mercury.jpg`)
     .setMap(`textures/${quality}/mercury-normal.png`, 'normalMap')
     .addTo(scene)
 
   // Venus
-  venus = new Planet(4879, 0.387, 88, 1407.6)
+  venus = new Planet(4879, 0.387, 88, 1407.6, 177.4, 3.4)
     .setMap(`textures/${quality}/venus.jpg`, 'map')
     .setMap(`textures/${quality}/venus-normal.png`, 'normalMap')
     .addTo(scene)
 
   // Earth
-  earth = new Planet(12756, 1, 365.2, 23.9)
+  earth = new Planet(12756, 1, 365.2, 23.9, 23.4, 0)
     .setMap(`textures/${quality}/earth.jpg`)
     .setMap(`textures/${quality}/earth-ambient-occlusion.png`, 'aoMap')
     .setMap(`textures/${quality}/earth-displacement.png`, 'displacementMap', {
@@ -140,30 +140,30 @@ function addObjects () {
     .addTo(scene)
 
   // Moon
-  moon = new Satellite(3475, 0.002567, 27.3, 655.7)
+  moon = new Satellite(3475, 0.002567, 27.3, 655.7, 6.7, 5.1)
     .setMap(`textures/${quality}/moon.jpg`)
     .setMap(`textures/${quality}/moon-normal.png`, 'normalMap')
     .addTo(earth)
 
   // Mars
-  mars = new Planet(6792, 1.524, 687, 24.6)
+  mars = new Planet(6792, 1.524, 687, 24.6, 25.2, 1.9)
     .setMap(`textures/${quality}/mars.jpg`)
     .setMap(`textures/${quality}/mars-normal.png`, 'normalMap')
     .addTo(scene)
 
   // Jupiter
-  jupiter = new Planet(142984, 5.204, 4331, 9.9)
+  jupiter = new Planet(142984, 5.204, 4331, 9.9, 3.1, 1.3)
     .setMap(`textures/${quality}/jupiter.jpg`)
     .addTo(scene)
 
   // Saturn
-  saturn = new Planet(120536, 9.582, 10747, 10.7)
+  saturn = new Planet(120536, 9.582, 10747, 10.7, 26.7, 2.5)
     .setMap(`textures/${quality}/saturn.jpg`)
     .addRing(`textures/${quality}/saturn-rings.png`)
     .addTo(scene)
 
   // Uranus
-  uranus = new Planet(51118, 19.201, 30589, -17.2)
+  uranus = new Planet(51118, 19.201, 30589, -17.2, 97.77, 0.8)
     .setMap(`textures/${quality}/uranus.jpg`)
     .addRing(`textures/${quality}/uranus-rings.png`)
     .addTo(scene)

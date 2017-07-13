@@ -8,9 +8,11 @@ export default class Planet extends CelestialObject {
     distance = 0,
     period = 0,
     rotation = 0,
+    tilt = 0,
+    orbitTilt = 0,
     options = {}
   ) {
-    super(diameter, distance, period, rotation, options)
+    super(diameter, distance, period, rotation, tilt, orbitTilt, options)
   }
 
   addRing (url) {
@@ -24,7 +26,7 @@ export default class Planet extends CelestialObject {
             side: THREE.DoubleSide
           }) // apply texture to new THREE.material
         )
-        this.ring.rotation.x = Math.PI / -2 // rotate 90 degrees // Fixme
+        this.ring.rotation.x = Math.PI / -2 // rotate 90 degrees
         this.mesh.add(this.ring) // add ring to self (planet)
       })
       .catch(err => {

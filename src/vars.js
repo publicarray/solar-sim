@@ -1,5 +1,6 @@
 // 1 = 1 meter
 
+const NINTHY_DEG = Math.PI / -2
 const solarSystem = {
   au: 149600000, // km = 50 units
   secondsInDay: 86400,
@@ -68,9 +69,10 @@ const solarSystem = {
   uranus: {
     id: 7,
     diamiter: 51118, // km 1km = 1000m
-    distance: 19.201, // AU
+    distance: 19.189165, // AU
     period: 30589, // 1 year = x days
-    rotation: -17.2 // (hours)
+    rotation: -17.2, // (hours)
+    tilt: 97.8 // degrees (retrograde rotation)
   },
   neptune: {
     id: 8,

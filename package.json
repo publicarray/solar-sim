@@ -35,6 +35,7 @@
     "dev": "rollup -c -w",
     "stats": "webpack --profile --json > stats.json; webpack-bundle-analyzer stats.json",
     "format": "prettier-standard 'src/**/*.js'",
+    "test": "yarn format",
     "precommit": "lint-staged"
   },
   "lint-staged": {
