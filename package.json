@@ -22,6 +22,7 @@
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-uglify": "^2.0.1",
     "rollup-watch": "^4.0.0",
+    "speedracer": "^0.2.0",
     "uglify-es": "^3.0.20",
     "webpack": "^3.0.0",
     "webpack-bundle-analyzer": "^2.8.2",
@@ -36,7 +37,8 @@
     "stats": "webpack --profile --json > stats.json; webpack-bundle-analyzer stats.json",
     "format": "prettier-standard 'src/**/*.js'",
     "test": "yarn format",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "speed": "speedracer run && speedracer display"
   },
   "lint-staged": {
     "src/**/*.js": [
