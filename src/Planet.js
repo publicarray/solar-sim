@@ -24,7 +24,7 @@ export default class Planet extends CelestialObject {
             this.scaled.radius * 1.05,
             this.scaled.radius * 1.5,
             VECTORS
-          ), //VECTORS-32 // create geometry
+          ), // VECTORS-32 // create geometry
           new THREE.MeshPhongMaterial({
             map: texture,
             transparent: true,

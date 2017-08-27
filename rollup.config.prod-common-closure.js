@@ -5,9 +5,11 @@ import resolve from 'rollup-plugin-node-resolve';
 import closure from 'rollup-plugin-closure-compiler-js';
 
 export default {
-  entry: 'src/index.js',
-  format: 'iife',
-  dest: 'dist/bundle-common-closure.js',
+  input: 'src/index.js',
+  output: {
+    format: 'iife',
+    file: 'dist/bundle-common-closure.js',
+  },
   plugins: [
     resolve({
       jsnext: true,

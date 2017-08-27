@@ -4,9 +4,11 @@ import uglify from 'rollup-plugin-uglify';
 import { minify } from 'uglify-es';
 
 export default {
-  entry: 'src/index.js',
-  format: 'es',
-  dest: 'dist/bundle-es.js',
+  input: 'src/index.js',
+  output: {
+    format: 'es',
+    file: 'dist/bundle-es.js',
+  },
   plugins: [
     resolve({
       jsnext: true,

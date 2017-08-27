@@ -4,9 +4,11 @@ import babel from 'rollup-plugin-babel';
 import uglify from 'rollup-plugin-uglify';
 
 export default {
-  entry: 'src/index.js',
-  format: 'iife',
-  dest: 'dist/bundle-common.js',
+  input: 'src/index.js',
+  output: {
+    format: 'iife',
+    file: 'dist/bundle-common.js',
+  },
   plugins: [
     resolve({
       jsnext: true,

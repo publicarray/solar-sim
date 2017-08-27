@@ -330,9 +330,8 @@ var OrbitControls = function (object, domElement) {
     var offset = new Vector3()
 
     return function pan (deltaX, deltaY) {
-      var element = scope.domElement === document
-        ? scope.domElement.body
-        : scope.domElement
+      var element =
+        scope.domElement === document ? scope.domElement.body : scope.domElement
 
       if (scope.object instanceof PerspectiveCamera) {
         // perspective
@@ -442,9 +441,8 @@ var OrbitControls = function (object, domElement) {
     rotateEnd.set(event.clientX, event.clientY)
     rotateDelta.subVectors(rotateEnd, rotateStart)
 
-    var element = scope.domElement === document
-      ? scope.domElement.body
-      : scope.domElement
+    var element =
+      scope.domElement === document ? scope.domElement.body : scope.domElement
 
     // rotating across whole screen goes 360 degrees around
     rotateLeft(
@@ -568,9 +566,8 @@ var OrbitControls = function (object, domElement) {
     rotateEnd.set(event.touches[0].pageX, event.touches[0].pageY)
     rotateDelta.subVectors(rotateEnd, rotateStart)
 
-    var element = scope.domElement === document
-      ? scope.domElement.body
-      : scope.domElement
+    var element =
+      scope.domElement === document ? scope.domElement.body : scope.domElement
 
     // rotating across whole screen goes 360 degrees around
     rotateLeft(

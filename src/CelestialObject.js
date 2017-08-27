@@ -98,7 +98,7 @@ export default class CelestialObject {
   drawOrbitLine () {
     this.orbitLine.geometry.vertices = []
     for (var i = 0; i <= VECTORS * 2; i++) {
-      //VECTORS-64
+      // VECTORS-64
       var theta = i / (VECTORS * 2) * Math.PI * 2
       this.orbitLine.geometry.vertices.push(
         new THREE.Vector3(
