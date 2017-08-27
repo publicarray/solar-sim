@@ -1,3 +1,4 @@
+import { VECTORS, solarSystem } from './vars'
 import loadTextureAsync from './utils'
 import * as THREE from 'three'
 
@@ -26,10 +27,22 @@ export default class CelestialObject {
     this.distance = distance
     this.period = period
     this.rotation = rotation
-    // const radius = this.diameter * solarSystem.scale * 0.5;
-    this.radius = 10
+    this.radius = diameter * 0.5
 
-    this.distance = 50 * count // FixMe
+    this.scaled = {}
+    this.scaled.radius =
+      this.radius * solarSystem.scale * solarSystem.planetScale
+    this.scaled.distance = distance * solarSystem.au * solarSystem.scale
+    this.scaled.rotation =
+      -solarSystem.speed * (2 * Math.PI / (rotation * 60 * 60))
+    this.scaled.period =
+      2 * Math.PI / (period * solarSystem.secondsInDay) * solarSystem.speed
+
+    // this.scaled.radius = 10
+    // this.scaled.distance = 50 * count // FixMe
+    // this.scaled.period = 0.03
+    // this.scaled.period = 1
+    // count++ // FixMe
 
     this.orbit = new THREE.Object3D()
     this.orbitLine = {}
@@ -39,16 +52,7 @@ export default class CelestialObject {
       opacity: 0.3
     })
     this.orbitLine.geometry = new THREE.Geometry()
-    for (var i = 0; i <= 64; i++) {
-      var theta = i / 64 * Math.PI * 2
-      this.orbitLine.geometry.vertices.push(
-        new THREE.Vector3(
-          Math.cos(theta) * this.distance,
-          Math.sin(theta) * this.distance,
-          0
-        )
-      )
-    }
+    this.drawOrbitLine()
 
     this.orbitLine = new THREE.Line(
       this.orbitLine.geometry,
@@ -60,14 +64,14 @@ export default class CelestialObject {
 
     // this.material = new THREE.MeshPhongMaterial({shininess: 0, wireframe: true})
     this.material = new THREE.MeshPhongMaterial({ shininess: 10 }) // default shininess = 30
-    this.geo = new THREE.SphereGeometry(this.radius, 24, 24) // create geometry
+    this.geo = new THREE.SphereGeometry(this.scaled.radius, VECTORS, VECTORS) // create geometry
     // this.geo = new THREE.IcosahedronGeometry(this.radius, 3),
     this.mesh = new THREE.Mesh(this.geo, new THREE.MeshBasicMaterial(0x000000))
     // this.mesh = new THREE.Mesh(new THREE.SphereGeometry(this.diameter * solarSystem.scale, 32, 32), new THREE.MeshPhongMaterial(0x000000));
     this.mesh.rotation.x = tilt * (Math.PI / 180) // equator tilt from degrees to radians
-    this.mesh.position.set(this.distance, 0, 0) // FixMe
-    count++ // FixMe
-    // this.mesh.position.set(solarSystem.scale * this.distance * solarSystem.au * this.distance, 0, 0);
+    // this.mesh.position.set(this.distance, 0, 0) // FixMe
+    this.mesh.position.set(this.scaled.distance, 0, 0)
+    // this.mesh.position.set(this.distance * this.distance * solarSystem.au * solarSystem.scale, 0, 0);
     this.orbit.add(this.mesh)
     this.root.add(this.orbitLine)
     this.root.add(this.orbit)
@@ -91,8 +95,25 @@ export default class CelestialObject {
     return this
   }
 
+  drawOrbitLine () {
+    this.orbitLine.geometry.vertices = []
+    for (var i = 0; i <= VECTORS * 2; i++) {
+      //VECTORS-64
+      var theta = i / (VECTORS * 2) * Math.PI * 2
+      this.orbitLine.geometry.vertices.push(
+        new THREE.Vector3(
+          Math.cos(theta) * this.scaled.distance,
+          Math.sin(theta) * this.scaled.distance,
+          0
+        )
+      )
+    }
+  }
+
   animate (delta) {
-    this.mesh.rotation.y += 0.03 * delta // fixme
+    // this.mesh.rotation.y += 0.03 * delta // fixme
     // this.orbit.rotation.y += 0.01 * delta // fixme
+    this.mesh.rotation.y += this.scaled.rotation * delta
+    this.orbit.rotation.y += this.scaled.period * delta
   }
 }

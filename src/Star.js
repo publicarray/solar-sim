@@ -64,11 +64,12 @@ export default class Star extends CelestialObject {
 
     this.corona = new SunCorona()
     this.corona.scale = 1
-    this.corona.sunSize = this.radius
+    this.corona.sunSize = 30 //this.scaled.radius
     this.root.add(this.corona.root)
 
     this.orbit.remove(this.mesh)
     this.root.remove(this.orbit)
+    // console.log('this.corona', this.corona)
   }
 
   animate (delta, camera) {

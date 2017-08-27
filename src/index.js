@@ -17,5 +17,5 @@ if (Detector.webgl) {
   )
 } else {
   var warning = Detector.getWebGLErrorMessage()
-  document.getElementsByClassName('page-content')[0].appendChild(warning)
+  document.body.appendChild(warning)
 }

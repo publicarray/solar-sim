@@ -50,8 +50,9 @@ function init () {
 
   // CONTROLS
   controls = new FlyControls(camera, container)
-  controls.movementSpeed = 100
-  controls.rollSpeed = Math.PI / 6
+  // controls.movementSpeed = 100
+  controls.movementSpeed = 800
+  controls.rollSpeed = Math.PI / 8
   controls.dragToLook = true
   // renderer.gammaInput = true;
   // renderer.gammaOutput = true;
@@ -107,7 +108,7 @@ function init () {
 function addObjects () {
   // SUN
   sun = new Star(1400000, 0, 0, 609.12)
-    .setMap(`textures/${quality}/sun.jpg`)
+    // .setMap(`textures/${quality}/sun.jpg`)
     // .setMap(`textures/${quality}/sun-lightMap`, 'lightMap')
     .addTo(scene)
 

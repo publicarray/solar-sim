@@ -1,13 +1,19 @@
 // 1 = 1 meter
 
-const NINTHY_DEG = Math.PI / -2
-const solarSystem = {
+export const NINTHY_DEG = Math.PI / -2
+export let VECTORS = 64
+export const VECTORS_HIGH = 64
+export const VECTORS_MID = 24
+export const VECTORS_LOW = 16
+
+export const solarSystem = {
   au: 149600000, // km = 50 units
   secondsInDay: 86400,
   speed: 50000, // 1, //1000000,
   scale: 0.00002, // 0.0000001,
   distance: 1, // 1,
-  planetScale: 10, // 200,
+  // planetScale: 10, // 200,
+  planetScale: 200, // 200,
   equalDistance: true, // false,
   equalDistanceNum: 50, // 20,
   sun: {
@@ -89,3 +95,5 @@ const solarSystem = {
     rotation: -153.3 // (hours)
   }
 }
+
+export default solarSystem

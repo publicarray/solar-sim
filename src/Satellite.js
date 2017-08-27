@@ -12,9 +12,12 @@ export default class Satellite extends CelestialObject {
   }
 
   addTo (object) {
-    this.mesh.position.set(25, 0, 0) // FixMe
-    this.orbit.position.set(object.mesh.position.x, 0, 0) // FixMe
-    object.orbit.add(this.orbit)
+    this.scaled.distance += object.scaled.radius // add planet surface radius to distance
+
+    this.root.position.set(object.scaled.distance, 0, 0) // move satellite into orbit (set root to the center of planet)
+    this.mesh.position.set(this.scaled.distance, 0, 0) // move satellite into orbit (update distance)
+    this.drawOrbitLine() // redraw orbit with new distance
+    object.orbit.add(this.root)
     return this
   }
 }

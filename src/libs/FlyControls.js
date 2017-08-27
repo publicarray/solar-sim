@@ -203,7 +203,7 @@ var FlyControls = function (object, domElement) {
     this.scrolled = true
     event.preventDefault()
     event.stopPropagation()
-    this.moveVector.z = event.deltaY / 4
+    this.moveVector.z = event.deltaY
   }), (this.mouseup = function (event) {
     event.preventDefault()
     event.stopPropagation()

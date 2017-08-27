@@ -1,3 +1,4 @@
+import { VECTORS } from './vars'
 import CelestialObject from './CelestialObject'
 import loadTextureAsync from './utils'
 import * as THREE from 'three'
@@ -19,7 +20,11 @@ export default class Planet extends CelestialObject {
     loadTextureAsync(url) // get texture
       .then(texture => {
         this.ring = new THREE.Mesh( // create mesh and apply geometry and material
-          new THREE.RingGeometry(this.radius + 1, this.radius + 7, 32), // create geometry
+          new THREE.RingGeometry(
+            this.scaled.radius * 1.05,
+            this.scaled.radius * 1.5,
+            VECTORS
+          ), //VECTORS-32 // create geometry
           new THREE.MeshPhongMaterial({
             map: texture,
             transparent: true,
@@ -40,14 +45,14 @@ export default class Planet extends CelestialObject {
       .then(texture => {
         this.clouds = new THREE.Mesh( // create mesh and apply geometry and material
           // new THREE.IcosahedronGeometry(this.radius + 0.5, 3),
-          new THREE.SphereGeometry(this.radius + 0.7, 24, 24), // create geometry
+          new THREE.SphereGeometry(this.scaled.radius * 1.05, VECTORS, VECTORS), // create geometry
           new THREE.MeshPhongMaterial({
             map: texture,
             alphaMap: texture,
             // wireframe: true,
             transparent: true,
-            depthWrite: false,
-            side: THREE.DoubleSide
+            depthWrite: false
+            // side: THREE.DoubleSide
           }) // apply texture to new THREE.material
         )
         this.mesh.add(this.clouds) // add clouds to self (planet)
