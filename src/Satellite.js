@@ -8,7 +8,8 @@ export default class Satellite extends CelestialObject {
     rotation = 0,
     options = {}
   ) {
-    super(diameter, distance, period, rotation, options)
+    // options.static = true //
+    super(diameter, distance, period, rotation, 0, 0, options)
   }
 
   addTo (object) {

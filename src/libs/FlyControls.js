@@ -204,7 +204,8 @@ var FlyControls = function (object, domElement) {
     event.preventDefault()
     event.stopPropagation()
     this.moveVector.z = event.deltaY
-  }), (this.mouseup = function (event) {
+  }),
+  (this.mouseup = function (event) {
     event.preventDefault()
     event.stopPropagation()
 
@@ -302,6 +303,18 @@ var FlyControls = function (object, domElement) {
     event.preventDefault()
   }
 
+  // function supportsPassive () {
+  //   var passiveSupport = false;
+  //   try {
+  //     addEventListener("testPassive", null, {
+  //      get passive() {
+  //       passiveSupport = {passive:true};
+  //     }
+  //    });
+  //   } catch(e) {}
+  //   return false; //passiveSupport
+  // }
+
   this.dispose = function () {
     this.domElement.removeEventListener('contextmenu', contextmenu, false)
     this.domElement.removeEventListener('wheel', _scroll, false)
@@ -323,6 +336,7 @@ var FlyControls = function (object, domElement) {
 
   this.domElement.addEventListener('contextmenu', contextmenu, false)
 
+  // this.domElement.addEventListener('wheel', _scroll, supportsPassive())
   this.domElement.addEventListener('wheel', _scroll, false)
   this.domElement.addEventListener('mousemove', _mousemove, false)
   this.domElement.addEventListener('mousedown', _mousedown, false)

@@ -5,6 +5,9 @@ const OUTDIR = "dist";
 
 const webpack = require("webpack");
 const HotModuleReplacementPlugin = new webpack.HotModuleReplacementPlugin();
+// const OptimizePlugin = new OptimizeJsPlugin({
+//   sourceMap: false
+// })
 
 module.exports = {
   target: "web",
@@ -27,5 +30,8 @@ module.exports = {
     compress: true, // enable gzip compression
     hot: true // hot module replacement. Depends on HotModuleReplacementPlugin
   },
-  plugins: [HotModuleReplacementPlugin]
+  plugins: [
+  HotModuleReplacementPlugin,
+    // OptimizePlugin
+  ]
 };

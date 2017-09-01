@@ -1,5 +1,6 @@
 // rollup.config.js
 import resolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
 // (beta) Testing closure compiler
 // yarn add --dev rollup-plugin-closure-compiler-js
 import closure from 'rollup-plugin-closure-compiler-js';
@@ -10,11 +11,18 @@ export default {
     format: 'iife',
     file: 'dist/bundle-common-closure.js',
   },
+  name: 'SolarSim'
   plugins: [
     resolve({
       jsnext: true,
       main: false,
       modulesOnly: true,
+    }),
+    commonjs({
+      include: 'node_modules/dat.gui/**',
+      namedExports: {
+        'node_modules/dat.gui/build/dat.gui.js': [ 'GUI', 'color', 'controllers', 'dom', 'gui' ]
+      }
     }),
     closure({
       languageIn: 'ES6',

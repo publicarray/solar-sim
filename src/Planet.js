@@ -13,6 +13,7 @@ export default class Planet extends CelestialObject {
     orbitTilt = 0,
     options = {}
   ) {
+    options.static = true // static root
     super(diameter, distance, period, rotation, tilt, orbitTilt, options)
   }
 

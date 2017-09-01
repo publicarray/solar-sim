@@ -96,4 +96,4 @@ export const solarSystem = {
   }
 }
 
-export default solarSystem
+export default { solarSystem }
