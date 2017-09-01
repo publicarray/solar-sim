@@ -2,7 +2,7 @@
   "name": "solar-sim",
   "version": "0.0.1",
   "dependencies": {
-    "dat.gui": "^0.6.1",
+    "dat.gui": "dataarts/dat.gui#2659494",
     "rollup-plugin-commonjs": "^8.2.0",
     "stats.js": "^0.17.0",
     "three": "^0.87.1"
