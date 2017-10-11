@@ -2,7 +2,8 @@
 document.body.addEventListener(
   'keydown',
   function (e) {
-    if (e.key.toLowerCase() === 'f') {
+    // f key is already used for camera controls (down)
+    if (e.key.toLowerCase() === 'enter') {
       toggleFullScreen()
     }
   },
