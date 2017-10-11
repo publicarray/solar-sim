@@ -1,4 +1,4 @@
-import { VECTORS } from './vars'
+import { globals } from './gui'
 import CelestialObject from './CelestialObject'
 import loadTextureAsync from './utils'
 import * as THREE from 'three'
@@ -22,9 +22,9 @@ export default class Planet extends CelestialObject {
       .then(texture => {
         this.ring = new THREE.Mesh( // create mesh and apply geometry and material
           new THREE.RingGeometry(
-            this.scaled.radius * 1.05,
-            this.scaled.radius * 1.5,
-            VECTORS
+            this.radius * 1.05,
+            this.radius * 1.5,
+            globals.vectors * 0.5
           ), // VECTORS-32 // create geometry
           new THREE.MeshPhongMaterial({
             map: texture,
@@ -33,6 +33,7 @@ export default class Planet extends CelestialObject {
           }) // apply texture to new THREE.material
         )
         this.ring.rotation.x = Math.PI / -2 // rotate 90 degrees
+        // this.ring.scale.set(globals.scale * globals.planetScale, globals.scale * globals.planetScale, globals.scale * globals.planetScale) //scale
         this.mesh.add(this.ring) // add ring to self (planet)
       })
       .catch(err => {
@@ -46,7 +47,11 @@ export default class Planet extends CelestialObject {
       .then(texture => {
         this.clouds = new THREE.Mesh( // create mesh and apply geometry and material
           // new THREE.IcosahedronGeometry(this.radius + 0.5, 3),
-          new THREE.SphereGeometry(this.scaled.radius * 1.05, VECTORS, VECTORS), // create geometry
+          new THREE.SphereGeometry(
+            this.radius * 1.06,
+            globals.vectors,
+            globals.vectors
+          ), // create geometry
           new THREE.MeshPhongMaterial({
             map: texture,
             alphaMap: texture,
@@ -56,6 +61,7 @@ export default class Planet extends CelestialObject {
             // side: THREE.DoubleSide
           }) // apply texture to new THREE.material
         )
+        // this.clouds.scale.set(globals.scale * globals.planetScale, globals.scale * globals.planetScale, globals.scale * globals.planetScale) //scale
         this.mesh.add(this.clouds) // add clouds to self (planet)
       })
       .catch(err => {
@@ -69,6 +75,17 @@ export default class Planet extends CelestialObject {
     if (this.clouds) {
       this.clouds.rotation.y -= 1 / 16 * delta
       // this.clouds.rotation.x  += 1/32 * delta
+    }
+  }
+
+  setVectors (newVectors) {
+    super.setVectors(newVectors)
+    if (this.clouds) {
+      this.clouds.geometry = new THREE.SphereGeometry(
+        this.radius * 1.06,
+        newVectors,
+        newVectors
+      )
     }
   }
 }

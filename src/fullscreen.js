@@ -2,7 +2,7 @@
 document.body.addEventListener(
   'keydown',
   function (e) {
-    if (e.key.toLowerCase() === 'enter') {
+    if (e.key.toLowerCase() === 'f') {
       toggleFullScreen()
     }
   },

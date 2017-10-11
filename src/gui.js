@@ -3,7 +3,7 @@
 //
 export let globals = {
   textureQuality: 'high',
-  vectors: 64,
+  vectors: 42,
   speed: 50000, // 1, //1000000,
   scale: 0.00002, // 0.0000001,
   planetScale: 200 // 200,
@@ -21,7 +21,7 @@ export function addGui (
 ) {
   // gui.add(text, 'speed', -5, 5);
   const controllerQuality = gui.add(globals, 'textureQuality', [
-    'low',
+    // 'low',
     'mid',
     'high'
   ])
@@ -30,9 +30,9 @@ export function addGui (
   controllerVectors.onChange(vectorsChange)
   const controllerSpeed = gui.add(globals, 'speed', 1, 1000000).step(1)
   controllerSpeed.onChange(speedChange)
-  const controllerScale = gui.add(globals, 'scale', 0.000005, 0.00005) // .step(0.000001);
-  controllerScale.onFinishChange(scaleChange)
-  const controllerPlanetScale = gui.add(globals, 'planetScale', 1, 200) // .step(0.000001);
+  const controllerScale = gui.add(globals, 'scale', 0.000005, 0.00005)
+  controllerScale.onChange(scaleChange)
+  const controllerPlanetScale = gui.add(globals, 'planetScale', 1, 200)
   controllerPlanetScale.onChange(planetScaleChange)
 }
 

@@ -65,12 +65,18 @@ export default class CelestialObject {
     // this.material = new THREE.MeshPhongMaterial({shininess: 0, wireframe: true})
     this.material = new THREE.MeshPhongMaterial({ shininess: 10 }) // default shininess = 30
     this.geo = new THREE.SphereGeometry(
-      this.scaled.radius,
-      globals.vecors,
+      this.radius,
+      globals.vectors,
       globals.vectors
     ) // create geometry
     // this.geo = new THREE.IcosahedronGeometry(this.radius, 3),
+
     this.mesh = new THREE.Mesh(this.geo, new THREE.MeshBasicMaterial(0x000000))
+    this.mesh.scale.set(
+      globals.scale * globals.planetScale,
+      globals.scale * globals.planetScale,
+      globals.scale * globals.planetScale
+    ) // scale
     // this.mesh = new THREE.Mesh(new THREE.SphereGeometry(this.diameter * solarSystem.scale, 32, 32), new THREE.MeshPhongMaterial(0x000000));
     this.mesh.rotation.x = tilt * (Math.PI / 180) // equator tilt from degrees to radians
     // this.mesh.position.set(this.distance, 0, 0) // FixMe
@@ -103,13 +109,13 @@ export default class CelestialObject {
     return this
   }
 
-  addTo (scene) {
-    scene.add(this.root)
+  addTo (object) {
+    object.add(this.root)
     return this
   }
 
-  remove (scene) {
-    scene.remove(this.root)
+  remove (object) {
+    object.remove(this.root)
     return this
   }
 
@@ -136,12 +142,13 @@ export default class CelestialObject {
 
   setVectors (newVectors) {
     newVectors = newVectors || globals.vectors
-    this.geo = new THREE.SphereGeometry(
-      this.scaled.radius,
-      newVectors,
-      newVectors
-    )
+    this.geo = new THREE.SphereGeometry(this.radius, newVectors, newVectors)
     this.mesh.geometry = this.geo
+    this.mesh.scale.set(
+      globals.scale * globals.planetScale,
+      globals.scale * globals.planetScale,
+      globals.scale * globals.planetScale
+    ) // scale
     this.drawOrbitLine()
   }
 
@@ -155,9 +162,14 @@ export default class CelestialObject {
   setScale (newScale, newPlanetScale) {
     newScale = newScale || globals.scale
     newPlanetScale = newPlanetScale || globals.planetScale
-    this.scaled.radius = this.radius * newScale * newPlanetScale
+    // this.scaled.radius = this.radius * newScale * newPlanetScale
     this.scaled.distance = this.distance * solarSystem.au * newScale
     this.mesh.position.set(this.scaled.distance, 0, 0)
-    this.setVectors()
+    this.mesh.scale.set(
+      globals.scale * globals.planetScale,
+      globals.scale * globals.planetScale,
+      globals.scale * globals.planetScale
+    ) // scale
+    this.drawOrbitLine()
   }
 }
