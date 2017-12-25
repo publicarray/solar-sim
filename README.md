@@ -1,5 +1,5 @@
 # SolarSim
-WIP Rework of the solar animation in three.js
+Rework of the solar animation in three.js
 
 ## Install
 
