@@ -28,7 +28,7 @@
     "uglify-es": "^3.2.1",
     "webpack": "^3.10.0",
     "webpack-bundle-analyzer": "^2.9.1",
-    "webpack-dev-server": "^2.9.7"
+    "webpack-dev-server": "^3.0.0"
   },
   "scripts": {
     "start": "webpack-dev-server --watch-content-base",
