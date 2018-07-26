@@ -18,7 +18,7 @@
     "lint-staged": "^6.0.0",
     "prettier": "^1.9.1",
     "prettier-standard": "^7.0.3",
-    "rollup": "^0.52.1",
+    "rollup": "^0.63.0",
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-postcss": "^0.5.5",
