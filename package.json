@@ -3,7 +3,7 @@
   "version": "0.2.1",
   "dependencies": {
     "dat.gui": "^0.7.0",
-    "rollup-plugin-commonjs": "^8.2.6",
+    "rollup-plugin-commonjs": "^9.0.0",
     "stats.js": "^0.17.0",
     "three": "^0.94.0"
   },
