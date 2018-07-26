@@ -5,7 +5,7 @@
     "dat.gui": "^0.7.0",
     "rollup-plugin-commonjs": "^8.2.6",
     "stats.js": "^0.17.0",
-    "three": "^0.88.0"
+    "three": "^0.94.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
