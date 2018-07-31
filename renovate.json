@@ -2,6 +2,6 @@
   "extends": [
     "config:base",
     ":preserveSemverRanges",
-    "group:all",
+    "group:all"
   ]
 }
