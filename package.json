@@ -22,13 +22,13 @@
     "rollup-plugin-babel": "^3.0.2",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-postcss": "^1.0.0",
-    "rollup-plugin-uglify": "^2.0.1",
+    "rollup-plugin-uglify": "^4.0.0",
     "rollup-watch": "^4.3.1",
     "speedracer": "^0.2.0",
     "uglify-es": "^3.2.1",
-    "webpack": "^3.10.0",
+    "webpack": "^4.0.0",
     "webpack-bundle-analyzer": "^2.9.1",
-    "webpack-dev-server": "^2.9.7"
+    "webpack-dev-server": "^3.0.0"
   },
   "scripts": {
     "start": "webpack-dev-server --watch-content-base",
