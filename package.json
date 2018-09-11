@@ -27,7 +27,7 @@
     "speedracer": "^0.2.0",
     "uglify-es": "^3.2.1",
     "webpack": "^4.0.0",
-    "webpack-bundle-analyzer": "^2.9.1",
+    "webpack-bundle-analyzer": "^3.0.0",
     "webpack-dev-server": "^3.0.0"
   },
   "scripts": {
