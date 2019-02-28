@@ -6946,10 +6946,10 @@ text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
-three@^0.101.0:
-  version "0.101.0"
-  resolved "https://registry.yarnpkg.com/three/-/three-0.101.0.tgz#a72a5b09d28f627868a6b428e15f234eb0dc6b9f"
-  integrity sha512-eHgP4nQsCHoeMv76E9ZWIqHufVzfDlPlU5FQuGNefkongDtSjXNLNJ5IbuAc/at3iQJCjXBX2X6DGt8dayDZHA==
+three@^0.102.0:
+  version "0.102.0"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.102.0.tgz#b26a7212d95f1ea043ab94598d55973ebe110cbb"
+  integrity sha512-ZszcMfos5uPugmf7svZshEIh/oncVAtnxpPqrFFj6hrh6SMyQ1qQBCY8QE0Lah1C5gXTx837rn2ikt0VLGqQ9g==
 
 through2@^2.0.0:
   version "2.0.5"
