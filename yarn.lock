@@ -2186,10 +2186,10 @@ cyclist@~0.2.2:
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-0.2.2.tgz#1b33792e11e914a2fd6d6ed6447464444e5fa640"
   integrity sha1-GzN5LhHpFKL9bW7WRHRkRE5fpkA=
 
-dat.gui@^0.7.0:
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/dat.gui/-/dat.gui-0.7.3.tgz#fae5317a8baf65b509242d1f59b5a31a49bbb1a7"
-  integrity sha512-VfVWUcuTwae6/MTia/s2aPB1NLZXA2Gz6PiVyYOrVfODbXJLNAkVjn0aiuxx08cR68ucOuwrNXXt0m9MNVJvkQ==
+dat.gui@^0.7.6:
+  version "0.7.6"
+  resolved "https://registry.yarnpkg.com/dat.gui/-/dat.gui-0.7.6.tgz#92182a0f2dc96c26910f888238d3839166d82f76"
+  integrity sha512-9Uqr4aQUvp9q5P2b4y6gK604HXafubOq578OmOS8mjrIkYrBP4EbQ9gz9YRXgyPh7aQi+b9H/jAG7EucmhYpSA==
 
 date-fns@^1.27.2:
   version "1.30.1"
