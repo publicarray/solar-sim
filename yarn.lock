@@ -2788,22 +2788,7 @@ execa@^1.0.0:
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
 
-execa@^2.0.1:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/execa/-/execa-2.0.2.tgz#3af2650be2b719549dc011a53118ecff5e28d0a2"
-  integrity sha512-CkFnhVuWj5stQUvRSeI+zAw0ME+Iprkew4HKSc491vOXLM+hKrDVn+QQoL2CIYy0CpvT0mY+MXlzPreNbuj/8A==
-  dependencies:
-    cross-spawn "^6.0.5"
-    get-stream "^5.0.0"
-    is-stream "^2.0.0"
-    merge-stream "^2.0.0"
-    npm-run-path "^3.0.0"
-    onetime "^5.1.0"
-    p-finally "^2.0.0"
-    signal-exit "^3.0.2"
-    strip-final-newline "^2.0.0"
-
-execa@^2.0.4:
+execa@^2.0.1, execa@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/execa/-/execa-2.0.4.tgz#2f5cc589c81db316628627004ea4e37b93391d8e"
   integrity sha512-VcQfhuGD51vQUQtKIq2fjGDLDbL6N1DTQVpYzxZ7LPIXw3HqTuIz6uxRmpV1qf8i31LHf2kjiaGI+GdHwRgbnQ==
@@ -5879,10 +5864,10 @@ preserve@^0.2.0:
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
   integrity sha1-gV7R9uvGWSb4ZbMQwHE7yzMVzks=
 
-prettier-standard@^14.0.0:
-  version "14.0.0"
-  resolved "https://registry.yarnpkg.com/prettier-standard/-/prettier-standard-14.0.0.tgz#ef69231530ce4a55402bbe7f9fb10810a566d74e"
-  integrity sha512-Q1Nj7Lf8CMrkmQP1Ai67IzOzRfpgnIVB5TkmfmzT71QE9J125A9kMgwk/NvPTJ7365Xek4LmRTrTBu1F9LuWzA==
+prettier-standard@^14.0.5:
+  version "14.0.5"
+  resolved "https://registry.yarnpkg.com/prettier-standard/-/prettier-standard-14.0.5.tgz#99e62095de53e500a3b8999a975022c2f6289abd"
+  integrity sha512-dKnQJ9omdybnK958nbmktsNbyznScSw74zU2oG764kQ9v83bXg8ox8zxe4P3OdB8uIQMPrQMIBH5RaLY6DoaQQ==
   dependencies:
     chalk "^2.4.2"
     diff "^4.0.1"
