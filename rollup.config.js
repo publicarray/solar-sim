@@ -4,15 +4,13 @@ import resolve from 'rollup-plugin-node-resolve';
 export default {
   input: 'src/index.js',
   output: {
+    name: 'SolarSim',
     format: 'es',
     file: 'dist/bundle-es.js',
   },
-  name: 'SolarSim',
   plugins: [
     resolve({
-      jsnext: true,
-      main: false,
-      modulesOnly: true,
+      mainFields: ['module', 'pkg.module']
     })
   ]
 };

@@ -1,30 +1,27 @@
 // For production (modern browsers with es6+)
 import resolve from 'rollup-plugin-node-resolve';
-import uglify from 'rollup-plugin-uglify';
-import { minify } from 'uglify-es';
+import { terser } from "rollup-plugin-terser";
 // const optimizeJs = require('rollup-plugin-optimize-js')
 
 export default {
   input: 'src/index.js',
   output: {
+    name: 'SolarSim',
     format: 'es',
     file: 'dist/bundle-es.js',
   },
-  name: 'SolarSim',
   plugins: [
     resolve({
-      jsnext: true,
-      main: false,
-      modulesOnly: true,
+      mainFields: ['module', 'pkg.module']
     }),
-    uglify({
+    terser({
       toplevel: true,
       compress: {
         drop_console: true,
         passes: 2,
         unsafe: true,
       }
-    }, minify),
+    }),
     // optimizeJs()
   ]
 };

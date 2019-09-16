@@ -2,7 +2,7 @@ import * as THREE from 'three'
 // import OrbitControls from './libs/OrbitControls'
 import FlyControls from './libs/FlyControls'
 import Stats from '../node_modules/stats.js/src/Stats'
-import * as dat from '../node_modules/dat.gui/build/dat.gui'
+import * as dat from 'dat.gui'
 import { globals, addGUI } from './gui'
 import loadTextureAsync from './utils'
 import Star from './Star'
@@ -21,8 +21,8 @@ let skybox,
   sun,
   uranus,
   venus
-let clock = new THREE.Clock()
-let gui = new dat.GUI()
+const clock = new THREE.Clock()
+const gui = new dat.GUI()
 
 const textureQualityChange = function (newQuality) {
   globals.quality = newQuality

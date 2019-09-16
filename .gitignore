@@ -6,3 +6,4 @@ config.codekit3
 .speedracer
 research
 *.map
+dist/index.html
