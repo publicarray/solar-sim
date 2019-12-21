@@ -7,7 +7,7 @@
     "three": "^0.111.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.2",
+    "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.4",
     "@babel/register": "^7.6.2",
     "babel-loader": "^8.0.6",
