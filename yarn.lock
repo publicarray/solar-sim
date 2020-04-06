@@ -2429,10 +2429,10 @@ dashify@2.0.0:
   resolved "https://registry.yarnpkg.com/dashify/-/dashify-2.0.0.tgz#fff270ca2868ca427fee571de35691d6e437a648"
   integrity sha512-hpA5C/YrPjucXypHPPc0oJ1l9Hf6wWbiOL7Ik42cxnsUOhWiCB/fylKbKqqJalW9FgkNQCw16YO8uW9Hs0Iy1A==
 
-dat.gui@^0.7.6:
-  version "0.7.6"
-  resolved "https://registry.yarnpkg.com/dat.gui/-/dat.gui-0.7.6.tgz#92182a0f2dc96c26910f888238d3839166d82f76"
-  integrity sha512-9Uqr4aQUvp9q5P2b4y6gK604HXafubOq578OmOS8mjrIkYrBP4EbQ9gz9YRXgyPh7aQi+b9H/jAG7EucmhYpSA==
+dat.gui@^0.7.7:
+  version "0.7.7"
+  resolved "https://registry.yarnpkg.com/dat.gui/-/dat.gui-0.7.7.tgz#7f96dbd21621a76385203659aebfa264ee6ae89b"
+  integrity sha512-sRl/28gF/XRC5ywC9I4zriATTsQcpSsRG7seXCPnTkK8/EQMIbCu5NPMpICLGxX9ZEUvcXR3ArLYCtgreFoMDw==
 
 date-fns@^1.27.2:
   version "1.30.1"
