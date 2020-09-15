@@ -15,7 +15,7 @@
     "html-webpack-plugin": "^4.3.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
-    "prettier": "^2.1.0",
+    "prettier": "^2.1.1",
     "prettier-standard": "^16.4.1",
     "rollup": "^2.26.5",
     "rollup-plugin-babel": "^4.4.0",
