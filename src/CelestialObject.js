@@ -14,15 +14,7 @@ export default class CelestialObject {
   // orbitTilt: degrees of orbit inclination
   // options:
   //
-  constructor (
-    diameter = 0,
-    distance = 0,
-    period = 0,
-    rotation = 0,
-    tilt = 0,
-    orbitTilt = 0,
-    options = {}
-  ) {
+  constructor (diameter = 0, distance = 0, period = 0, rotation = 0, tilt = 0, orbitTilt = 0, options = {}) {
     if (typeof this.options === 'undefined') {
       this.options = {}
     }
@@ -54,21 +46,14 @@ export default class CelestialObject {
     })
     this.drawOrbitLine()
 
-    this.orbitLine = new THREE.Line(
-      this.orbitLine.geometry,
-      this.orbitLine.material
-    )
+    this.orbitLine = new THREE.Line(this.orbitLine.geometry, this.orbitLine.material)
     this.orbitLine.rotation.x = Math.PI / -2 + orbitTilt * (Math.PI / 180)
     this.orbitLine.updateMatrix()
 
     this.orbit.rotation.x = orbitTilt * (Math.PI / 180) // orbit tilt from degrees to radians
     // this.material = new THREE.MeshPhongMaterial({shininess: 0, wireframe: true})
     this.material = new THREE.MeshPhongMaterial({ shininess: 10 }) // default shininess = 30
-    this.geo = new THREE.SphereGeometry(
-      this.radius,
-      globals.vectors,
-      globals.vectors
-    ) // create geometry
+    this.geo = new THREE.SphereGeometry(this.radius, globals.vectors, globals.vectors) // create geometry
     // this.geo = new THREE.IcosahedronGeometry(this.radius, 3),
 
     this.mesh = new THREE.Mesh(this.geo, new THREE.MeshBasicMaterial(0x000000))
@@ -88,10 +73,7 @@ export default class CelestialObject {
 
     // Performance Optimisation
     this.orbitLine.matrixAutoUpdate = false
-    if (
-      typeof this.options.static !== 'undefined' &&
-      this.options.static === true
-    ) {
+    if (typeof this.options.static !== 'undefined' && this.options.static === true) {
       this.root.matrixAutoUpdate = false // static root
     }
   }
@@ -124,13 +106,9 @@ export default class CelestialObject {
     this.orbitLine.geometry = new THREE.Geometry()
     this.orbitLine.geometry.vertices = []
     for (var i = 0; i <= vectors * 2; i++) {
-      var theta = i / (vectors * 2) * Math.PI * 2
+      var theta = (i / (vectors * 2)) * Math.PI * 2
       this.orbitLine.geometry.vertices.push(
-        new THREE.Vector3(
-          Math.cos(theta) * this.scaled.distance,
-          Math.sin(theta) * this.scaled.distance,
-          0
-        )
+        new THREE.Vector3(Math.cos(theta) * this.scaled.distance, Math.sin(theta) * this.scaled.distance, 0)
       )
     }
   }
@@ -154,9 +132,8 @@ export default class CelestialObject {
 
   setSpeed (newSpeed) {
     newSpeed = newSpeed || globals.speed
-    this.scaled.rotation = -newSpeed * (2 * Math.PI / (this.rotation * 60 * 60))
-    this.scaled.period =
-      2 * Math.PI / (this.period * solarSystem.secondsInDay) * newSpeed
+    this.scaled.rotation = -newSpeed * ((2 * Math.PI) / (this.rotation * 60 * 60))
+    this.scaled.period = ((2 * Math.PI) / (this.period * solarSystem.secondsInDay)) * newSpeed
   }
 
   setScale (newScale, newPlanetScale) {

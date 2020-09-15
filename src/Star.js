@@ -36,8 +36,7 @@ class SunCorona {
     this.mesh.position.copy(camToSun.clone().multiplyScalar(0.1))
     const sunScreenPos = sunPos.clone().project(camera)
     this.uniforms.sunPosition.value.copy(camToSun.multiplyScalar(-1))
-    const visibleW =
-      Math.tan(Math.PI / 180 * camera.fov / 2) * camToSun.length() * 2
+    const visibleW = Math.tan(((Math.PI / 180) * camera.fov) / 2) * camToSun.length() * 2
     const sunScaledSize = this.sunSize * this.scale
     const sunScreenRatio = sunScaledSize / visibleW
     // console.log(visibleW, camera.fov, camToSun.length(), sunScaledSize);
@@ -50,13 +49,7 @@ class SunCorona {
 }
 
 export default class Star extends CelestialObject {
-  constructor (
-    diameter = 0,
-    distance = 0,
-    period = 0,
-    rotation = 0,
-    options = {}
-  ) {
+  constructor (diameter = 0, distance = 0, period = 0, rotation = 0, options = {}) {
     super(diameter, distance, period, rotation, options)
 
     this.light = new THREE.PointLight(0xffffff, 1)

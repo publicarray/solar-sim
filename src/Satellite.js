@@ -2,13 +2,7 @@ import CelestialObject from './CelestialObject'
 import { globals } from './gui'
 
 export default class Satellite extends CelestialObject {
-  constructor (
-    diameter = 0,
-    distance = 0,
-    period = 0,
-    rotation = 0,
-    options = {}
-  ) {
+  constructor (diameter = 0, distance = 0, period = 0, rotation = 0, options = {}) {
     // options.static = true //
     super(diameter, distance, period, rotation, 0, 0, options)
   }

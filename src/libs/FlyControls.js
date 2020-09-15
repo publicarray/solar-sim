@@ -191,10 +191,8 @@ var FlyControls = function (object, domElement) {
       var halfWidth = container.size[0] / 2
       var halfHeight = container.size[1] / 2
 
-      this.moveState.yawLeft =
-        -(event.pageX - container.offset[0] - halfWidth) / halfWidth
-      this.moveState.pitchDown =
-        (event.pageY - container.offset[1] - halfHeight) / halfHeight
+      this.moveState.yawLeft = -(event.pageX - container.offset[0] - halfWidth) / halfWidth
+      this.moveState.pitchDown = (event.pageY - container.offset[1] - halfHeight) / halfHeight
 
       this.updateRotationVector()
     }
@@ -205,29 +203,29 @@ var FlyControls = function (object, domElement) {
     event.stopPropagation()
     this.moveVector.z = event.deltaY
   }),
-  (this.mouseup = function (event) {
-    event.preventDefault()
-    event.stopPropagation()
+    (this.mouseup = function (event) {
+      event.preventDefault()
+      event.stopPropagation()
 
-    if (this.dragToLook) {
-      this.mouseStatus--
+      if (this.dragToLook) {
+        this.mouseStatus--
 
-      this.moveState.yawLeft = this.moveState.pitchDown = 0
-    } else {
-      switch (event.button) {
-        case 0:
-          this.moveState.forward = 0
-          break
-        case 2:
-          this.moveState.back = 0
-          break
+        this.moveState.yawLeft = this.moveState.pitchDown = 0
+      } else {
+        switch (event.button) {
+          case 0:
+            this.moveState.forward = 0
+            break
+          case 2:
+            this.moveState.back = 0
+            break
+        }
+
+        this.updateMovementVector()
       }
 
-      this.updateMovementVector()
-    }
-
-    this.updateRotationVector()
-  })
+      this.updateRotationVector()
+    })
 
   this.update = function (delta) {
     var moveMult = delta * this.movementSpeed
@@ -238,20 +236,12 @@ var FlyControls = function (object, domElement) {
     this.object.translateZ(this.moveVector.z * moveMult)
 
     this.tmpQuaternion
-      .set(
-        this.rotationVector.x * rotMult,
-        this.rotationVector.y * rotMult,
-        this.rotationVector.z * rotMult,
-        1
-      )
+      .set(this.rotationVector.x * rotMult, this.rotationVector.y * rotMult, this.rotationVector.z * rotMult, 1)
       .normalize()
     this.object.quaternion.multiply(this.tmpQuaternion)
 
     // expose the rotation vector for convenience
-    this.object.rotation.setFromQuaternion(
-      this.object.quaternion,
-      this.object.rotation.order
-    )
+    this.object.rotation.setFromQuaternion(this.object.quaternion, this.object.rotation.order)
     if (this.scrolled) {
       this.moveVector.z = 0
       this.scrolled = false
@@ -259,10 +249,7 @@ var FlyControls = function (object, domElement) {
   }
 
   this.updateMovementVector = function () {
-    var forward =
-      this.moveState.forward || (this.autoForward && !this.moveState.back)
-        ? 1
-        : 0
+    var forward = this.moveState.forward || (this.autoForward && !this.moveState.back) ? 1 : 0
 
     this.moveVector.x = -this.moveState.left + this.moveState.right
     this.moveVector.y = -this.moveState.down + this.moveState.up

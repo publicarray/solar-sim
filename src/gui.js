@@ -11,14 +11,7 @@ export let globals = {
   // equalDistanceNum: 50 // 20,
 }
 
-export function addGui (
-  gui,
-  textureQualityChange,
-  vectorsChange,
-  speedChange,
-  scaleChange,
-  planetScaleChange
-) {
+export function addGui (gui, textureQualityChange, vectorsChange, speedChange, scaleChange, planetScaleChange) {
   // gui.add(text, 'speed', -5, 5);
   const controllerQuality = gui.add(globals, 'textureQuality', [
     // 'low',

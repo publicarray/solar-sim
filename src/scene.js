@@ -10,17 +10,7 @@ import Planet from './Planet'
 import Satellite from './Satellite'
 
 let scene, camera, renderer, controls, stats, light
-let skybox,
-  earth,
-  jupiter,
-  mars,
-  mercury,
-  moon,
-  neptune,
-  saturn,
-  sun,
-  uranus,
-  venus
+let skybox, earth, jupiter, mars, mercury, moon, neptune, saturn, sun, uranus, venus
 const clock = new THREE.Clock()
 const gui = new dat.GUI()
 
@@ -165,14 +155,7 @@ function init () {
   // GUI/options
   // let gui = new dat.GUI()
   // Todo: cleanup function
-  addGUI(
-    gui,
-    textureQualityChange,
-    vectorsChange,
-    speedChange,
-    scaleChange,
-    planetScaleChange
-  )
+  addGUI(gui, textureQualityChange, vectorsChange, speedChange, scaleChange, planetScaleChange)
 }
 
 function addObjects (textureQuality) {
@@ -222,13 +205,9 @@ function addObjects (textureQuality) {
   earth = new Planet(12756, 1, 365.2, 23.9, 23.4, 0)
     .setMap(`textures/${textureQuality}/earth.jpg`)
     .setMap(`textures/${textureQuality}/earth-ambient-occlusion.png`, 'aoMap')
-    .setMap(
-      `textures/${textureQuality}/earth-displacement.png`,
-      'displacementMap',
-      {
-        displacementScale: 1
-      }
-    )
+    .setMap(`textures/${textureQuality}/earth-displacement.png`, 'displacementMap', {
+      displacementScale: 1
+    })
     .setMap(`textures/${textureQuality}/earth-normal.jpg`, 'normalMap', {
       bumpScale: 1
     })
@@ -255,9 +234,7 @@ function addObjects (textureQuality) {
     .addTo(scene)
 
   // Jupiter
-  jupiter = new Planet(142984, 5.204, 4331, 9.9, 3.1, 1.3)
-    .setMap(`textures/${textureQuality}/jupiter.jpg`)
-    .addTo(scene)
+  jupiter = new Planet(142984, 5.204, 4331, 9.9, 3.1, 1.3).setMap(`textures/${textureQuality}/jupiter.jpg`).addTo(scene)
 
   // Saturn
   saturn = new Planet(120536, 9.582, 10747, 10.7, 26.7, 2.5)
@@ -272,9 +249,7 @@ function addObjects (textureQuality) {
     .addTo(scene)
 
   // Neptune
-  neptune = new Planet(49528, 30.047, 59800, 16.1)
-    .setMap(`textures/${textureQuality}/neptune.jpg`)
-    .addTo(scene)
+  neptune = new Planet(49528, 30.047, 59800, 16.1).setMap(`textures/${textureQuality}/neptune.jpg`).addTo(scene)
 }
 
 function animate () {
