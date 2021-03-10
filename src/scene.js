@@ -160,9 +160,12 @@ function init () {
 
 function addObjects (textureQuality) {
   // SKYBOX
-
+  let ext = 'png'
+  if (textureQuality == 'high') {
+    ext = 'jpg'
+  }
   // loadTextureAsync(`textures/${textureQuality}/sky.png`, function (texture) {
-  loadTextureAsync(`textures/${textureQuality}/stars.jpg`)
+  loadTextureAsync(`textures/${textureQuality}/stars.${ext}`)
     .then(texture => {
       skybox = new THREE.Mesh(
         // new THREE.IcosahedronGeometry(1e10, 5),
@@ -170,7 +173,7 @@ function addObjects (textureQuality) {
         new THREE.SphereBufferGeometry(1e10, 12, 12),
         // new THREE.MeshBasicMaterial({ map: texture })
         new THREE.ShaderMaterial({
-          uniforms: { texture: { type: 't', value: texture } },
+          uniforms: { textureImg: { type: 't', value: texture } },
           vertexShader: document.getElementById('sky-vertex').textContent,
           fragmentShader: document.getElementById('sky-fragment').textContent
         })
@@ -208,13 +211,13 @@ function addObjects (textureQuality) {
     .setMap(`textures/${textureQuality}/earth-displacement.png`, 'displacementMap', {
       displacementScale: 1
     })
-    .setMap(`textures/${textureQuality}/earth-normal.jpg`, 'normalMap', {
+    .setMap(`textures/${textureQuality}/earth-normal.${ext}`, 'normalMap', {
       bumpScale: 1
     })
     .setMap(`textures/${textureQuality}/earth-specular.png`, 'specularMap', {
       specular: new THREE.Color('grey')
     })
-    .addClouds(`textures/${textureQuality}/earth-clouds.jpg`)
+    .addClouds(`textures/${textureQuality}/earth-clouds.${ext}`)
     .addTo(scene)
 
   // Moon

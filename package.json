@@ -31,6 +31,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
+    "serve": "webpack-dev-server --watch-content-base",
     "start": "webpack-dev-server --watch-content-base",
     "start-production": "webpack-dev-server -p --watch-content-base",
     "build-webpack": "webpack -p --progress",

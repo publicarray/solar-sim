@@ -103,14 +103,13 @@ export default class CelestialObject {
 
   drawOrbitLine (vectors) {
     vectors = vectors || globals.vectors
-    this.orbitLine.geometry = new THREE.Geometry()
-    this.orbitLine.geometry.vertices = []
+    this.orbitLine.geometry = new THREE.BufferGeometry()
+    let points = []
     for (var i = 0; i <= vectors * 2; i++) {
-      var theta = (i / (vectors * 2)) * Math.PI * 2
-      this.orbitLine.geometry.vertices.push(
-        new THREE.Vector3(Math.cos(theta) * this.scaled.distance, Math.sin(theta) * this.scaled.distance, 0)
-      )
+      let theta = (i / (vectors * 2)) * Math.PI * 2
+      points.push(new THREE.Vector3(Math.cos(theta) * this.scaled.distance, Math.sin(theta) * this.scaled.distance, 0))
     }
+    this.orbitLine.geometry.setFromPoints(points)
   }
 
   animate (delta) {
